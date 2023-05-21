@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Cairo', sans-serif;
+}
+
+main {
+  width: 53%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.calculate_button,
+.btn-link {
+  text-decoration: none;
+  width: 30%;
+  display: flex;
+  background: #8c71db;
+  color: #fff;
+  padding: 10px 2rem;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.margin {
+  margin: 2rem 0;
+}
+
+.box-table h3,
+.termsConditionBox h3,
+.advantages h3 {
+  color: #8c71db;
+}
+
+.termsConditionBox ol,
+.advantages ul {
+  padding: 0 20px;
+  color: #273444;
+  padding-top: 10px;
+}
+
+.termsConditionBox ol li,
+.advantages ul li {
+  font-size: 14px;
+  padding: 2px 0;
+  font-weight: bold;
+}
+
+.padding {
+  padding: 1rem 0;
+}
+
+.results h3,
+.results h4,
+.calculate h2 {
+  color: #3c4858;
+}
+
+label {
+  color: #3c4858;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+form.inputs {
+  width: 60%;
+}
+
+.calculate {
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 2px 1px -1px rgb(0 0 0 / 12%), 0 1px 1px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1rem 0;
+}
+
+form.inputs select,
+form.inputs input {
+  background: #eff2f7;
+  border: 1px solid #e3e7ee;
+  width: 100%;
+  padding: 0px 8px;
+  border-radius: 4px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+}
+
+.calculate_button {
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  font-size: 20px;
+  height: 55px;
+  cursor: pointer;
+  margin: 24px 0 10px;
+}
+
+.box-input {
+  margin-bottom: 16px;
+}
+
+.container-calc {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.results span {
+  color: #8c71db;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.error {
+  color: #d20f1c;
+  font-size: 12px;
+}
+
+.dataTable>thead>tr>th[class*="sort"]:before,
+.dataTable>thead>tr>th[class*="sort"]:after {
+  content: "" !important;
+}
+
+.width-100 {
+  width: 100% !important;
+}
+
+.dataTables_wrapper .row:first-child,
+.dataTables_wrapper .row:last-child {
+  display: none;
+}
+
+td,
+.dataTable tr.child ul li span {
+  color: #273444;
+  font-weight: 500;
+}
+
+.dataTable thead>tr>th,
+.dataTable tr>td:first-child {
+  color: #5737b6;
+  font-weight: bold;
+  padding: 12px !important;
+}
+
+.dataTable thead>tr>th,
+.dataTable tr>td {
+  border: none;
+  text-align: center;
+}
+
+.dataTable thead>tr>th:not(:last-child),
+.dataTable tr>td:not(:last-child) {
+  border-left: 1px solid #000;
+}
+
+.dataTable tr th,
+.dataTable tr:not(:last-child) td {
+  border-bottom: 1px solid #000 !important;
+}
+
+#table_page {
+  border: 1px solid #000;
+  border-spacing: 0;
+}
+
+.box-table {
+  margin: 3rem 0 1rem 0;
+}
+
+table.dataTable.dtr-inline.collapsed tbody td:first-child:before,
+table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
+  right: 4px;
+  top: 17px;
+  background-color: #5737b6;
+}
+
+.overflow-y {
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8c71db;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8c71db;
+}
+
+@media screen and (max-width: 1399.99px) {
+  .btn-link {
+    width: fit-content;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 991.99px) {
+  main {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 575.99px) {
+
+  .advantages h3 {
+    margin-bottom: 0;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  .inner-page {
+    padding: 0 1rem;
+  }
+
+  form.inputs {
+    width: 100%;
+  }
+
+  .dataTable tr th {
+    min-width: 120px;
+  }
+
+  .dataTable tr th:first-child {
+    min-width: 200px;
+  }
+
+  .margin {
+    margin: 1rem 0;
+  }
+
+  .calculate_button,
+  .btn-link {
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .results {
+    margin-top: 1rem;
+  }
+
+  form.inputs select,
+  form.inputs input {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .calculate h2 {
+    font-size: 20px;
+  }
+
+  .calculate h3 {
+    font-size: 18px;
+  }
+
+  label,
+  .dataTable thead>tr>th,
+  .dataTable tr>td {
+    font-size: 14px;
+  }
+}

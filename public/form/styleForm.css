@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Cairo', sans-serif;
+}
+
+:root {
+  --main-color: #8c71db;
+  --white: #fff;
+}
+
+.image {
+  min-height: 100px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-check-input:focus,
+.form-check-input:hover,
+.form-check-input,
+.form-select:focus,
+.form-select:hover,
+.form-select,
+.form-control:focus,
+.form-control:hover,
+.form-control,
+.btn:focus,
+.btn:hover,
+.btn {
+  box-shadow: none;
+}
+
+.btn-details:hover,
+.btn-details:focus,
+.btn-details {
+  background-color: var(--main-color);
+  color: var(--white);
+}
+
+.accordion-button::after {
+  display: none;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+}
+
+.logo img {
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+.left-box,
+.right-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
+.bg-box-left,
+.bg-box {
+  background-color: #f2edff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+select.form-select {
+  background-image: none;
+  padding-right: 10px;
+}
+
+.red-text {
+  color: rgb(181, 8, 8);
+  cursor: pointer;
+}
+
+.form-check-input {
+  height: 24px;
+  width: 24px;
+  float: right !important;
+  margin-left: 1rem !important;
+}
+
+.box-hight {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.gray-text {
+  color: gray;
+}
+
+@media screen and (max-width:576.99px) {
+  main {
+    width: 90% !important;
+  }
+
+  p,
+  label,
+  input,
+  select {
+    font-size: 14px !important;
+  }
+}
