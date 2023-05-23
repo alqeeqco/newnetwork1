@@ -1190,9 +1190,11 @@ ol li a {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.border-box{
+
+.border-box {
     border-left: 2px solid;
 }
+
 .bg_image--11 {
     background-image: url(../images/bg/bg-image-11.jpg)
 }
@@ -8556,7 +8558,11 @@ span.cart-count {
     }
 
     .header-main-nav .mainmenu-nav .mainmenu>li.menu-item-has-children .axil-submenu li a:after {
-        display: none
+        transform: rotate(0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
     }
 
     .header-main-nav .mainmenu-nav .mainmenu>li.menu-item-has-children .axil-submenu li a:hover {
@@ -8797,6 +8803,7 @@ span.cart-count {
     margin-right: 15px
 }
 
+.mainmenu .menu-item-has-children.position-relative>a::after,
 .mainmenu>.menu-item-has-children>a::after {
     content: "";
     font-family: var(--font-awesome);
@@ -8806,6 +8813,13 @@ span.cart-count {
     position: absolute;
     top: 1px;
     right: -14px
+}
+
+.mainmenu .menu-item-has-children.position-relative>a::after {
+    left: 0;
+    right: 93%;
+    top: 4px;
+    transform: rotate(90deg);
 }
 
 .mainmenu>.menu-item-has-children.menu-item-open>a:before {
@@ -14087,6 +14101,7 @@ body.open .closeMask {
 .footer-style-2 .copyright-default .social-share a {
     font-size: 16px;
     color: var(--color-body);
+    width: 20px;
     line-height: normal
 }
 
@@ -20341,10 +20356,12 @@ button.btn {
 .box-color .container-color-box input[type="radio"] {
     display: none;
 }
-.single-product-content .inner .product-rating .star-rating .star-rating__wrap{
+
+.single-product-content .inner .product-rating .star-rating .star-rating__wrap {
     display: flex;
     flex-direction: row-reverse;
 }
+
 .box-color .container-color-box input[type="radio"]+label:before {
     content: "";
     display: inline-block;
@@ -20397,24 +20414,50 @@ button.btn {
     font-size: 12px;
     font-weight: 600;
 }
-.description h6{
+
+.description h6 {
     font-size: 13px;
     font-weight: 700;
 }
-.axil-signin-area .offset-xl-2 {f
+
+.axil-signin-area .offset-xl-2 {
     margin: 0 !important;
     margin-right: 16.66666667% !important;
 }
-#card-adress input[type=radio]~label::before{
+
+#card-adress input[type=radio]~label::before {
     display: none !important;
 }
 
-#card-adress .fa-check-circle{
+#card-adress .fa-check-circle {
     color: var(--color-primary)
 }
-#card-adress .fa-check-circle{
+
+#card-adress .fa-check-circle {
     display: none;
 }
-#card-adress.checked .fa-check-circle{
+
+#card-adress.checked .fa-check-circle {
+    display: blo ck;
+}
+
+
+/* nav */
+
+.nested {
+    left: 0 !important;
+    top: 0 !important;
+    right: 100% !important;
+}
+
+.axil-submenu.nested {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    min-width: 200px;
+}
+
+.menu-item-has-children.position-relative:hover .axil-submenu.nested {
     display: block;
 }
