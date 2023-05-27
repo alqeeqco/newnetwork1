@@ -22,4 +22,7 @@ class Categories extends Model
         'image' => 'nullable|image',
     ];
 
+    public function products(){
+        return $this->hasMany(Products::class , 'category_id'  , 'id');
+    }
 }
