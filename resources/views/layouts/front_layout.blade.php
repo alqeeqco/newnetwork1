@@ -44,6 +44,10 @@
     <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/style.min.css') }}">
     @endif
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
+
     @yield('css')
 </head>
 
@@ -59,12 +63,12 @@
                         <div class="header-top-dropdown">
 
                             @if( app()->getLocale() == 'en' )
-                            <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
-                                {{ 'العربية' }}
+                              <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                                {{ 'English' }}
                             </a>
                             @else
-                            <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
-                                {{ 'English' }}
+                            <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                                {{ 'العربية' }}
                             </a>
                             @endif
 
@@ -115,24 +119,25 @@
                                         <li><a href="{{ route('home') }}/#categories">{{ __('lang.Home2') }}</a></li>
                                         <li><a href="{{ route('home') }}/#all-products">{{ __('lang.Home3') }}</a></li>
                                         <li><a href="{{ route('home') }}/#new-arrivals">{{ __('lang.Home4') }}</a></li>
-                                        <li class="menu-item-has-children position-relative">
-                                            <a href="#">{{ __('lang.Home5') }}</a>
-                                            <ul class="axil-submenu nested">
-                                                <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home5.1') }}</a></li>
-                                                <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home5.2') }}</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children position-relative">
-                                            <a href="#">{{ __('lang.Home5') }}</a>
-                                            <ul class="axil-submenu nested">
-                                                <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home5.3') }}</a></li>
-                                                <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home5.4') }}</a></li>
-                                            </ul>
-                                        </li>
                                         <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home6') }}</a></li>
                                         <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home7') }}</a></li>
                                         <li><a href="{{ route('home') }}/#subscribe">{{ __('lang.Home8') }}</a></li>
                                         <li><a href="{{ route('home') }}/#footer">{{ __('lang.Home9') }}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">{{ __('lang.Categories') }}</a>
+                                    <ul class="axil-submenu">
+                                        @foreach ($categories_key as $categories_key1)
+                                        <li class="menu-item-has-children position-relative">
+                                            <a href="#">{{ app()->getLocale() == 'en' ? $categories_key1->name_en : $categories_key1->name_ar }}</a>
+                                            <ul class="axil-submenu nested">
+                                                @foreach ($categories_key1->products as $products_key)
+                                                <li><a href="{{ route('product.show' , $products_key->id) }}">{{ app()->getLocale() == 'en' ? $products_key->name_en : $products_key->name_ar }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
@@ -175,7 +180,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('cart.index') }}">
+                                <a href="http://www.smsaexpress.com/ar/trackingdetails" target="_blank">
                                     <i class="flaticon-truck"></i>
                                 </a>
                             </li>
@@ -504,6 +509,8 @@
         <script src="{{ asset('web/rtl_assets/js/rtl-main.js') }}"></script>
         @endif
         <script src="{{ asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
         <script>
             $('.name-filter').on('change', function(e) {
                 var name = $('.name-filter').val();

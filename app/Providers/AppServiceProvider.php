@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Categories;
 use App\Models\Products;
 use App\Models\Settings;
 use App\Repositories\Cart\CartRepository;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*',function($view) {
             $view->with('cart',  new CartRepository());
             $view->with('products',  Products::tableFilters()->get());
+            $view->with('categories_key',  Categories::with('products')->get());
             $view->with('tax_tax',  Settings::where('key_id' , 'tax')->first()->value);
         });
     }

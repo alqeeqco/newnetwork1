@@ -688,6 +688,7 @@
         </div>
         <!-- End Most Sold Product Area  -->
     @endif
+
     @if($Why_People_Choose_Us->isNotEmpty())
         <!-- Start Why Choose Area  -->
         <div class="axil-why-choose-area pb--50 pb_sm--30" id='why-us'>
@@ -756,6 +757,21 @@
         <!-- End Axil Product Poster Area  -->
     @endif
 
+    <div class="axil-poster">
+        <div class="container">
+            <div class="row">
+                <div class="slider-image">
+                    @foreach(\App\Models\Paymentoptions::where('status' , '1')->get() as $key)
+                    <div class="img-box" style="padding: 30px">
+                        <img src="{{ Request::root() . '/dashboard/images/' . $key->image }}" alt="">
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
     <!-- Start Axil Newsletter Area  -->
     <div class="axil-newsletter-area axil-section-gap pt--0" id='subscribe'>
         <div class="container">
@@ -789,7 +805,40 @@
 
 @endsection
 @section('js')
-    <script src="{{ asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script>
+    $('.slider-image').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        autoplay: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        arrows: true,
+        // prevArrow: '<i class="fas fa-chevron-left"></i>',
+        // nextArrow: '<i class="fas fa-chevron-right"></i>',
+        responsive: [{
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 4,
+            }
+        },
+        {
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 3,
+            }
+        },
+        {
+            breakpoint: 600,
+                settings: {
+                slidesToShow: 2,
+            }
+        }
+    ]
+    });
+</script>
+
+<script src="{{ asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script>
 
 
@@ -1156,4 +1205,5 @@
 
         });
     </script>
+
 @endsection

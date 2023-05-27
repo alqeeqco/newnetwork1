@@ -20,6 +20,7 @@ use App\Http\Controllers\web\SubscribeController;
 
 use App\Http\Controllers\web\TapPaymentController;
 use App\Models\Carts;
+use App\Models\Categories;
 use App\Models\Order;
 use App\Models\Settings;
 use Illuminate\Support\Facades\Route;
