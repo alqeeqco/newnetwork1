@@ -16,41 +16,6 @@
   <link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
   <!-- CSS
     ============================================ -->
-<<<<<<< HEAD
-    @if( app()->getLocale() == 'en' )
-
-    <!-- Bootstrap CSS - English -->
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/flaticon/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/sal.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/vendor/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/assets/css/style.min.css') }}">
-
-    @elseif( app()->getLocale() == 'ar' )
-    <!-- Bootstrap CSS - Arabic -->
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/bootstrap.rtl.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/flaticon/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/sal.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/vendor/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/rtl_assets/css/style.min.css') }}">
-    @endif
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
-
-    @yield('css')
-=======
   @if( app()->getLocale() == 'en' )
 
   <!-- Bootstrap CSS - English -->
@@ -80,7 +45,6 @@
   @endif
 
   @yield('css')
->>>>>>> bcf8eca4aa0b7edc30c432e4fca0fdd08162a8bb
 </head>
 
 <body class="sticky-header newsletter-popup-modal" style="font-family: cairo, sans-serif;font-style: normal;font-weight: 200;">
@@ -94,27 +58,15 @@
           <div class="col-sm-6">
             <div class="header-top-dropdown">
 
-<<<<<<< HEAD
-                            @if( app()->getLocale() == 'en' )
-                              <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
-                                {{ 'English' }}
-                            </a>
-                            @else
-                            <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
-                                {{ 'العربية' }}
-                            </a>
-                            @endif
-=======
-              @if( app()->getLocale() == 'en' )
-              <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
-                {{ 'العربية' }}
-              </a>
-              @else
-              <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
-                {{ 'English' }}
-              </a>
-              @endif
->>>>>>> bcf8eca4aa0b7edc30c432e4fca0fdd08162a8bb
+                @if( app()->getLocale() == 'en' )
+                <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                  {{ 'العربية' }}
+                </a>
+                @else
+                <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                  {{ 'English' }}
+                </a>
+                @endif
 
 
             </div>
@@ -131,132 +83,6 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <!-- Start Mainmenu Area  -->
-        <div id="axil-sticky-placeholder"></div>
-        <div class="axil-mainmenu">
-            <div class="container">
-                <div class="header-navbar">
-                    <div class="header-brand">
-
-                        <a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/') }}" class="logo logo-dark">
-                            <img src="{{ Request::root() . '/dashboard/images/' . \App\Models\Settings::where('key_id' , 'logo')->first()->value }}" alt="{{ env('APP_NAME') }}" style="width: 130px; height:80px; /*object-fit:cover;*/ padding: 10px;">
-
-                        </a>
-
-                    </div>
-                    <div class="header-main-nav">
-                        <!-- Start Mainmanu Nav -->
-                        <nav class="mainmenu-nav">
-                            <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
-                            <div class="mobile-nav-brand">
-                                <a href="{{ url(app()->getLocale().'/') }}" class="logo">
-                                    <img src="{{ Request::root() . '/dashboard/images/' . \App\Models\Settings::where('key_id' , 'logo')->first()->value }}" alt="{{ env('APP_NAME') }}" style="width: 130px; height:80px;object-fit:cover; padding: 10px;">
-                                </a>
-                            </div>
-                            <ul class="mainmenu">
-                                <li class="menu-item-has-children">
-                                    <a href="#">{{ __('lang.Home') }}</a>
-                                    <ul class="axil-submenu">
-                                        <li><a href="{{ route('home') }}/#hot-deal-this-week">{{ __('lang.Home1') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#categories">{{ __('lang.Home2') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#all-products">{{ __('lang.Home3') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#new-arrivals">{{ __('lang.Home4') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home6') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home7') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#subscribe">{{ __('lang.Home8') }}</a></li>
-                                        <li><a href="{{ route('home') }}/#footer">{{ __('lang.Home9') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">{{ __('lang.Categories') }}</a>
-                                    <ul class="axil-submenu">
-                                        @foreach ($categories_key as $categories_key1)
-                                        <li class="menu-item-has-children position-relative">
-                                            <a href="#">{{ app()->getLocale() == 'en' ? $categories_key1->name_en : $categories_key1->name_ar }}</a>
-                                            <ul class="axil-submenu nested">
-                                                @foreach ($categories_key1->products as $products_key)
-                                                <li><a href="{{ route('product.show' , $products_key->id) }}">{{ app()->getLocale() == 'en' ? $products_key->name_en : $products_key->name_ar }}</a></li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">{{ __('lang.Products') }}</a>
-                                    <ul class="axil-submenu">
-                                        <li><a href="{{ route('product.index') }}">{{ __('lang.Products1') }}</a></li>
-                                        <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/new-arrivals?type=new') }}">{{ __('lang.Products2') }}</a></li>
-                                        <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/most-sold?type=sold') }}">{{ __('lang.Products3') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{{ route('link.about') }}">{{ __('lang.about') }}</a></li>
-                                <li><a href="{{ route('contact-us.index') }}">{{ __('lang.contact') }}</a></li>
-                            </ul>
-                        </nav>
-
-                        <!-- End Mainmanu Nav -->
-                    </div>
-                    <div class="header-action">
-                        <ul class="action-list">
-                            <li class="axil-search">
-                                <a href="javascript:void(0)" class="header-search-icon" title="Search">
-                                    <i class="flaticon-magnifying-glass"></i>
-                                </a>
-                            </li>
-                            <li class="wishlist">
-                                <a href="{{ route('favorite.index') }}">
-                                    <i class="flaticon-heart"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('cart.index') }}">
-                                    <span class="cart-count">
-                                        @if($cart)
-                                        {{ $cart->get()->count() ?? 0 }}
-                                        @else
-                                        0
-                                        @endif
-                                    </span>
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://www.smsaexpress.com/ar/trackingdetails" target="_blank">
-                                    <i class="flaticon-truck"></i>
-                                </a>
-                            </li>
-                            <li class="my-account">
-                                <a href="javascript:void(0)">
-                                    <i class="flaticon-person"></i>
-                                </a>
-                                <div class="my-account-dropdown">
-                                    <span class="title">{{ __('lang.QUICKLINKS') }}</span>
-                                    <ul>
-                                        <li>
-                                            <a href={{ route('account.index') }}>{{ __('lang.my-account') }}</a>
-                                        </li>
-                                    </ul>
-                                    @if(\Illuminate\Support\Facades\Auth::user())
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        @method('POST')
-                                        <button class="nav-item nav-link">
-                                            <i class="fal fa-sign-out"></i>
-                                            Logout
-                                        </button>
-                                    </form>
-                                    @else
-                                    <div class="login-btn">
-                                        <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">{{ __('lang.Login') }}</a>
-                                    </div>
-                                    @endif
-                                    {{-- <div class="reg-footer text-center">No account yet? <a href={{ route('register') }}--}}
-                                    {{-- class="btn-link">{{ __('lang.REGISTER') }}</a>
-                                </div>--}}
-                    </div>
-=======
       </div>
     </div>
     <!-- Start Mainmenu Area  -->
@@ -274,57 +100,57 @@
           <div class="header-main-nav">
             <!-- Start Mainmanu Nav -->
             <nav class="mainmenu-nav">
-              <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
-              <div class="mobile-nav-brand">
-                <a href="{{ url(app()->getLocale().'/') }}" class="logo">
-                  <img src="{{ Request::root() . '/dashboard/images/' . \App\Models\Settings::where('key_id' , 'logo')->first()->value }}" alt="{{ env('APP_NAME') }}" style="width: 130px; height:80px;object-fit:cover; padding: 10px;">
-                </a>
-              </div>
-              <ul class="mainmenu">
-                <li class="menu-item-has-children">
-                  <a href="#">{{ __('lang.Home') }}</a>
-                  <ul class="axil-submenu">
-                    <li><a href="{{ route('home') }}/#hot-deal-this-week">{{ __('lang.Home1') }}</a></li>
-                    <li><a href="{{ route('home') }}/#categories">{{ __('lang.Home2') }}</a></li>
-                    <li><a href="{{ route('home') }}/#all-products">{{ __('lang.Home3') }}</a></li>
-                    <li><a href="{{ route('home') }}/#new-arrivals">{{ __('lang.Home4') }}</a></li>
-                    <li class="menu-item-has-children position-relative">
-                      <a href="#">{{ __('lang.Home5') }}</a>
-                      <ul class="axil-submenu nested">
-                        <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home5.1') }}</a></li>
-                        <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home5.2') }}</a></li>
-                      </ul>
->>>>>>> bcf8eca4aa0b7edc30c432e4fca0fdd08162a8bb
+                <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
+                <div class="mobile-nav-brand">
+                    <a href="{{ url(app()->getLocale().'/') }}" class="logo">
+                        <img src="{{ Request::root() . '/dashboard/images/' . \App\Models\Settings::where('key_id' , 'logo')->first()->value }}" alt="{{ env('APP_NAME') }}" style="width: 130px; height:80px;object-fit:cover; padding: 10px;">
+                    </a>
+                </div>
+                <ul class="mainmenu">
+                    <li class="menu-item-has-children">
+                        <a href="#">{{ __('lang.Home') }}</a>
+                        <ul class="axil-submenu">
+                            <li><a href="{{ route('home') }}/#hot-deal-this-week">{{ __('lang.Home1') }}</a></li>
+                            <li><a href="{{ route('home') }}/#categories">{{ __('lang.Home2') }}</a></li>
+                            <li><a href="{{ route('home') }}/#all-products">{{ __('lang.Home3') }}</a></li>
+                            <li><a href="{{ route('home') }}/#new-arrivals">{{ __('lang.Home4') }}</a></li>
+                            <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home6') }}</a></li>
+                            <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home7') }}</a></li>
+                            <li><a href="{{ route('home') }}/#subscribe">{{ __('lang.Home8') }}</a></li>
+                            <li><a href="{{ route('home') }}/#footer">{{ __('lang.Home9') }}</a></li>
+                        </ul>
                     </li>
-                    <li class="menu-item-has-children position-relative">
-                      <a href="#">{{ __('lang.Home5') }}</a>
-                      <ul class="axil-submenu nested">
-                        <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home5.3') }}</a></li>
-                        <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home5.4') }}</a></li>
-                      </ul>
+                    <li class="menu-item-has-children">
+                        <a href="#">{{ __('lang.Categories') }}</a>
+                        <ul class="axil-submenu">
+                            @foreach ($categories_key as $categories_key1)
+                            <li class="menu-item-has-children position-relative">
+                                <a href="#">{{ app()->getLocale() == 'en' ? $categories_key1->name_en : $categories_key1->name_ar }}</a>
+                                <ul class="axil-submenu nested">
+                                    @foreach ($categories_key1->products as $products_key)
+                                    <li><a href="{{ route('product.show' , $products_key->id) }}">{{ app()->getLocale() == 'en' ? $products_key->name_en : $products_key->name_ar }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @endforeach
+                        </ul>
                     </li>
-                    <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home6') }}</a></li>
-                    <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home7') }}</a></li>
-                    <li><a href="{{ route('home') }}/#subscribe">{{ __('lang.Home8') }}</a></li>
-                    <li><a href="{{ route('home') }}/#footer">{{ __('lang.Home9') }}</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item-has-children">
-                  <a href="#">{{ __('lang.Products') }}</a>
-                  <ul class="axil-submenu">
-                    <li><a href="{{ route('product.index') }}">{{ __('lang.Products1') }}</a></li>
-                    <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/new-arrivals?type=new') }}">{{ __('lang.Products2') }}</a></li>
-                    <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/most-sold?type=sold') }}">{{ __('lang.Products3') }}</a></li>
-                  </ul>
-                </li>
-                <li><a href="{{ route('link.about') }}">{{ __('lang.about') }}</a></li>
-                <li><a href="{{ route('contact-us.index') }}">{{ __('lang.contact') }}</a></li>
-              </ul>
+                    <li class="menu-item-has-children">
+                        <a href="#">{{ __('lang.Products') }}</a>
+                        <ul class="axil-submenu">
+                            <li><a href="{{ route('product.index') }}">{{ __('lang.Products1') }}</a></li>
+                            <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/new-arrivals?type=new') }}">{{ __('lang.Products2') }}</a></li>
+                            <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/most-sold?type=sold') }}">{{ __('lang.Products3') }}</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('link.about') }}">{{ __('lang.about') }}</a></li>
+                    <li><a href="{{ route('contact-us.index') }}">{{ __('lang.contact') }}</a></li>
+                </ul>
             </nav>
 
             <!-- End Mainmanu Nav -->
-          </div>
-          <div class="header-action">
+            </div>
+        <div class="header-action">
             <ul class="action-list">
               <li class="axil-search">
                 <a href="javascript:void(0)" class="header-search-icon" title="Search">
@@ -349,7 +175,7 @@
                 </a>
               </li>
               <li>
-                <a href="{{ route('cart.index') }}">
+                <a href="http://www.smsaexpress.com/ar/trackingdetails">
                   <i class="flaticon-truck"></i>
                 </a>
               </li>
@@ -390,7 +216,7 @@
           </li>
           </ul>
         </div>
-      </div>
+    </div>
     </div>
     </div>
     <!-- End Mainmenu Area -->
@@ -462,7 +288,8 @@
           <!-- about us -->
           <div class="col-12 col-lg-4 mb-4">
             <h5 class="widget-title">about us</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fugiat autem veniam tempora, iure maxime sit, ut omnis, perferendis dolorem nesciunt quidem dignissimos ad necessitatibus earum molestias sapiente commodi repellat.
+            <p>
+                {!! App\Models\Settings::where('key_id' , 'about_'.app()->getLocale())->first()->value  !!}
             </p>
           </div>
           <div class="col-lg-8 d-flex flex-wrap">
@@ -640,101 +467,6 @@
     <!-- Offer Modal End -->
     <!-- JS
 ============================================ -->
-<<<<<<< HEAD
-        @if( app()->getLocale() == 'en')
-        <!-- Modernizer JS -->
-        <script src="{{ asset('web/assets/js/vendor/modernizr.min.js') }}"></script>
-        <!-- jQuery JS -->
-        <script src="{{ asset('web/assets/js/vendor/jquery.js') }}"></script>
-        <!-- Bootstrap JS -->
-        <script src="{{ asset('web/assets/js/vendor/popper.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/slick.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/js.cookie.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/jquery.countdown.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/sal.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/imagesloaded.pkgd.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/isotope.pkgd.min.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/counterup.js') }}"></script>
-        <script src="{{ asset('web/assets/js/vendor/waypoints.min.js') }}"></script>
-
-        <!-- Main JS -->
-        <script src="{{ asset('web/assets/js/main.js') }}"></script>
-
-        @elseif( app()->getLocale() == 'ar' )
-        <!-- Modernizer JS -->
-        <script src="{{ asset('web/rtl_assets/js/vendor/modernizr.min.js') }}"></script>
-        <!-- jQuery JS -->
-        <script src="{{ asset('web/rtl_assets/js/vendor/jquery.js') }}"></script>
-        <!-- Bootstrap JS -->
-        <script src="{{ asset('web/rtl_assets/js/vendor/popper.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/slick.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/js.cookie.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/jquery.style.switcher.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/jquery.countdown.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/sal.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/imagesloaded.pkgd.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/isotope.pkgd.min.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/counterup.js') }}"></script>
-        <script src="{{ asset('web/rtl_assets/js/vendor/waypoints.min.js') }}"></script>
-
-        <!-- Main JS -->
-        <script src="{{ asset('web/rtl_assets/js/rtl-main.js') }}"></script>
-        @endif
-        <script src="{{ asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-        <script>
-            $('.name-filter').on('change', function(e) {
-                var name = $('.name-filter').val();
-                if (name.length > 3 || name.length <= 0) {
-                    var url = "{{ url('/search') }}";
-                    $.ajax({
-                        url: url,
-                        data: {
-                            name_en: name,
-                        },
-                    }).done(function(data) {
-                        $("#card-body").html(data);
-                    });
-                }
-            });
-        </script>
-        <script>
-        {{--$(document).on('click', '#add_fav_add_fav', function (e) {--}}
-        {{-- var id = $(this).data('id');--}}
-        {{-- if ('{{ \Illuminate\Support\Facades\Auth::user() }}') {--}}
-        {{-- $(this).children('a').children('.fa-heart').toggleClass("red-color");--}}
-        {{-- $.ajaxSetup({--}}
-        {{-- headers: {--}}
-        {{-- 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-        {{-- }--}}
-        {{-- });--}}
-        {{-- $.ajax({--}}
-        {{-- type: 'POST',--}}
-        {{-- url: '{{ route("product.add_fav") }}',--}}
-        {{-- data: {--}}
-        {{-- 'user_id': '{{ \Illuminate\Support\Facades\Auth::id() }}',--}}
-        {{-- 'product_id': id,--}}
-        {{-- },--}}
-        {{-- success: function (response) {--}}
-        {{-- }--}}
-        {{-- });--}}
-        {{-- } else {--}}
-        {{-- window.location.href = "{{ route('login') }}";--}}
-        {{-- }--}}
-        {{--});--}}
-
-
-        </script>
-
-        @yield('js')
-=======
     @if( app()->getLocale() == 'en')
     <!-- Modernizer JS -->
     <script src="{{ asset('web/assets/js/vendor/modernizr.min.js') }}"></script>
@@ -826,7 +558,6 @@
     </script>
 
     @yield('js')
->>>>>>> bcf8eca4aa0b7edc30c432e4fca0fdd08162a8bb
 </body>
 
 </html>
