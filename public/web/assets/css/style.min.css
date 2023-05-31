@@ -20815,3 +20815,10 @@ input[type=radio]~label:after {
 .menu-item-has-children.position-relative:hover .axil-submenu.nested {
     display: block;
 }
+
+.whatsapp {
+    position: fixed;
+    width: 40px;
+    bottom: 20px;
+    right: 45px;
+}

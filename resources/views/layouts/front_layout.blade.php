@@ -50,6 +50,9 @@
 <body class="sticky-header newsletter-popup-modal" style="font-family: cairo, sans-serif;font-style: normal;font-weight: 200;">
 
   <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
+  <a href="#top" class="whatsapp">
+    <img src="{{ asset('web/assets/images/whatsapp.png') }}" alt="whatsapp">
+  </a>
 
   <header class="header axil-header header-style-1">
     <div class="axil-header-top">
@@ -58,15 +61,15 @@
           <div class="col-sm-6">
             <div class="header-top-dropdown">
 
-                @if( app()->getLocale() == 'en' )
-                <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
-                  {{ 'العربية' }}
-                </a>
-                @else
-                <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
-                  {{ 'English' }}
-                </a>
-                @endif
+              @if( app()->getLocale() == 'en' )
+              <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                {{ 'العربية' }}
+              </a>
+              @else
+              <a rel="alternate" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                {{ 'English' }}
+              </a>
+              @endif
 
 
             </div>
@@ -100,57 +103,57 @@
           <div class="header-main-nav">
             <!-- Start Mainmanu Nav -->
             <nav class="mainmenu-nav">
-                <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
-                <div class="mobile-nav-brand">
-                    <a href="{{ url(app()->getLocale().'/') }}" class="logo">
-                        <img src="{{ Request::root() . '/dashboard/images/' . \App\Models\Settings::where('key_id' , 'logo')->first()->value }}" alt="{{ env('APP_NAME') }}" style="width: 130px; height:80px;object-fit:cover; padding: 10px;">
-                    </a>
-                </div>
-                <ul class="mainmenu">
-                    <li class="menu-item-has-children">
-                        <a href="#">{{ __('lang.Home') }}</a>
-                        <ul class="axil-submenu">
-                            <li><a href="{{ route('home') }}/#hot-deal-this-week">{{ __('lang.Home1') }}</a></li>
-                            <li><a href="{{ route('home') }}/#categories">{{ __('lang.Home2') }}</a></li>
-                            <li><a href="{{ route('home') }}/#all-products">{{ __('lang.Home3') }}</a></li>
-                            <li><a href="{{ route('home') }}/#new-arrivals">{{ __('lang.Home4') }}</a></li>
-                            <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home6') }}</a></li>
-                            <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home7') }}</a></li>
-                            <li><a href="{{ route('home') }}/#subscribe">{{ __('lang.Home8') }}</a></li>
-                            <li><a href="{{ route('home') }}/#footer">{{ __('lang.Home9') }}</a></li>
-                        </ul>
+              <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
+              <div class="mobile-nav-brand">
+                <a href="{{ url(app()->getLocale().'/') }}" class="logo">
+                  <img src="{{ Request::root() . '/dashboard/images/' . \App\Models\Settings::where('key_id' , 'logo')->first()->value }}" alt="{{ env('APP_NAME') }}" style="width: 130px; height:80px;object-fit:cover; padding: 10px;">
+                </a>
+              </div>
+              <ul class="mainmenu">
+                <li class="menu-item-has-children">
+                  <a href="#">{{ __('lang.Home') }}</a>
+                  <ul class="axil-submenu">
+                    <li><a href="{{ route('home') }}/#hot-deal-this-week">{{ __('lang.Home1') }}</a></li>
+                    <li><a href="{{ route('home') }}/#categories">{{ __('lang.Home2') }}</a></li>
+                    <li><a href="{{ route('home') }}/#all-products">{{ __('lang.Home3') }}</a></li>
+                    <li><a href="{{ route('home') }}/#new-arrivals">{{ __('lang.Home4') }}</a></li>
+                    <li><a href="{{ route('home') }}/#why-us">{{ __('lang.Home6') }}</a></li>
+                    <li><a href="{{ route('home') }}/#ads">{{ __('lang.Home7') }}</a></li>
+                    <li><a href="{{ route('home') }}/#subscribe">{{ __('lang.Home8') }}</a></li>
+                    <li><a href="{{ route('home') }}/#footer">{{ __('lang.Home9') }}</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="#">{{ __('lang.Categories') }}</a>
+                  <ul class="axil-submenu">
+                    @foreach ($categories_key as $categories_key1)
+                    <li class="menu-item-has-children position-relative">
+                      <a href="#">{{ app()->getLocale() == 'en' ? $categories_key1->name_en : $categories_key1->name_ar }}</a>
+                      <ul class="axil-submenu nested">
+                        @foreach ($categories_key1->products as $products_key)
+                        <li><a href="{{ route('product.show' , $products_key->id) }}">{{ app()->getLocale() == 'en' ? $products_key->name_en : $products_key->name_ar }}</a></li>
+                        @endforeach
+                      </ul>
                     </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">{{ __('lang.Categories') }}</a>
-                        <ul class="axil-submenu">
-                            @foreach ($categories_key as $categories_key1)
-                            <li class="menu-item-has-children position-relative">
-                                <a href="#">{{ app()->getLocale() == 'en' ? $categories_key1->name_en : $categories_key1->name_ar }}</a>
-                                <ul class="axil-submenu nested">
-                                    @foreach ($categories_key1->products as $products_key)
-                                    <li><a href="{{ route('product.show' , $products_key->id) }}">{{ app()->getLocale() == 'en' ? $products_key->name_en : $products_key->name_ar }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">{{ __('lang.Products') }}</a>
-                        <ul class="axil-submenu">
-                            <li><a href="{{ route('product.index') }}">{{ __('lang.Products1') }}</a></li>
-                            <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/new-arrivals?type=new') }}">{{ __('lang.Products2') }}</a></li>
-                            <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/most-sold?type=sold') }}">{{ __('lang.Products3') }}</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ route('link.about') }}">{{ __('lang.about') }}</a></li>
-                    <li><a href="{{ route('contact-us.index') }}">{{ __('lang.contact') }}</a></li>
-                </ul>
+                    @endforeach
+                  </ul>
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="#">{{ __('lang.Products') }}</a>
+                  <ul class="axil-submenu">
+                    <li><a href="{{ route('product.index') }}">{{ __('lang.Products1') }}</a></li>
+                    <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/new-arrivals?type=new') }}">{{ __('lang.Products2') }}</a></li>
+                    <li><a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/products/most-sold?type=sold') }}">{{ __('lang.Products3') }}</a></li>
+                  </ul>
+                </li>
+                <li><a href="{{ route('link.about') }}">{{ __('lang.about') }}</a></li>
+                <li><a href="{{ route('contact-us.index') }}">{{ __('lang.contact') }}</a></li>
+              </ul>
             </nav>
 
             <!-- End Mainmanu Nav -->
-            </div>
-        <div class="header-action">
+          </div>
+          <div class="header-action">
             <ul class="action-list">
               <li class="axil-search">
                 <a href="javascript:void(0)" class="header-search-icon" title="Search">
@@ -216,7 +219,7 @@
           </li>
           </ul>
         </div>
-    </div>
+      </div>
     </div>
     </div>
     <!-- End Mainmenu Area -->
@@ -289,7 +292,7 @@
           <div class="col-12 col-lg-4 mb-4">
             <h5 class="widget-title">about us</h5>
             <p>
-                {!! App\Models\Settings::where('key_id' , 'about_'.app()->getLocale())->first()->value  !!}
+              {!! App\Models\Settings::where('key_id' , 'about_'.app()->getLocale())->first()->value !!}
             </p>
           </div>
           <div class="col-lg-8 d-flex flex-wrap">
