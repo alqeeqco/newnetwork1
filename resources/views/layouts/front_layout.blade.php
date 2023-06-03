@@ -49,8 +49,8 @@
 
 <body class="sticky-header newsletter-popup-modal" style="font-family: cairo, sans-serif;font-style: normal;font-weight: 200;">
 
-  <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
-  <a href="#top" class="whatsapp">
+  {{-- <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a> --}}
+  <a href="https://wa.me/{{ \App\Models\Settings::where('key_id' , 'whats')->first()->value }}" target="_blank" class="whatsapp">
     <img src="{{ asset('web/assets/images/whatsapp.png') }}" alt="whatsapp">
   </a>
 
