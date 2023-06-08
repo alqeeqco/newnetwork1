@@ -106,7 +106,8 @@
                 {{--                   class="btn btn-icon  btn-light-warning btn-active-color-primary btn-sm me-1">--}}
                 {{--=======--}}
                 @can('Product-Edit')
-                <button id="appear_but" class="btn btn-icon  btn-light-info btn-sm me-1" data-appear="{{ $key->appear }}" data-id="{{ $key->id }}">
+                <button id="appear_but" class="btn btn-icon  btn-light-info btn-sm me-1"
+                data-appear="{{ $key->appear }}" data-id="{{ $key->id }}">
                     <i class="fa fa-bars"></i>
                 </button>
                 <a href="{{ url(\Illuminate\Support\Facades\App::getLocale().'/admin/products/edit') }}/{{ $key->id }}"
@@ -158,6 +159,9 @@
                     <span class="svg-icon svg-icon-3">
                         <i class="fas fa-images"></i>
                     </span>
+                </a>
+                <a class="btn btn-icon  btn-light-info btn-sm me-1" href="{{ route('products.reStore' , $key->id) }}">
+                    <i class="fa fa-window-restore"></i>
                 </a>
                 @endcan
             </td>

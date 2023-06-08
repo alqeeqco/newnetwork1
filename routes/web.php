@@ -10,6 +10,7 @@ use App\Http\Controllers\web\HomeController;
 use App\Http\Controllers\web\MyAccountController;
 
 use App\Http\Controllers\dashboard\CategoriesController;
+use App\Http\Controllers\dashboard\ProductsController;
 use App\Http\Controllers\web\AppointmentsController;
 use App\Http\Controllers\web\EmcanPaymentController;
 use App\Http\Controllers\web\OrderController;
@@ -41,7 +42,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 require __DIR__ . '/auth.php';
-
 // Clear application cache:
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
@@ -291,6 +291,7 @@ Route::group([
 
             Route::post('/appearUpdate/{id}', 'appearUpdate')->name('appearUpdate');
 
+            Route::get('/reStore/{id}' , 'reStore')->name('reStore');;
         });
 
     // Countries

@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories_key',  Categories::with('products')->get());
             $view->with('tax_tax',  Settings::where('key_id' , 'tax')->first()->value);
         });
+
+        // $this->app->bind(ProductInterface::class, function () {
+        //     return new ProductBuilder();
+        // });
     }
 
     /**

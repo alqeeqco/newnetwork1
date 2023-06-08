@@ -11,7 +11,8 @@ class Products extends Model
 
     protected $table = 'products';
     public $timestamps = true;
-    protected $fillable = array('category_id', 'code', 'name_en', 'name_ar', 'price', 'des_en', 'des_ar', 'tax', 'status', 'image', 'discount', 'quantity', 'appear');
+    protected $fillable = array('category_id', 'code', 'name_en', 'name_ar',
+    'price', 'des_en', 'des_ar', 'tax', 'status', 'image', 'discount', 'quantity', 'appear');
 
     public static $rules = [
         'name_ar' => 'required|min:3|max:255',
@@ -55,7 +56,6 @@ class Products extends Model
     public function categories(){
         return $this->belongsTo('\App\Models\Categories' , 'category_id'  , 'id');
     }
-
 
     /**
      * Get the post's image.
