@@ -3,22 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Mail\OrderMail;
-use App\Models\Carts;
-use App\Models\Colors;
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Products;
-use App\Models\Settings;
-use App\Repositories\Cart\CartRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Mail;
 
 class EmcanPaymentController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $postFieldsDetails = [
             'voucherCode' => $request->voucherCode,
@@ -28,22 +18,32 @@ class EmcanPaymentController extends Controller
         $responseDetails = $this->CallApi('/merchant/v1/vouchers/getVoucherDetails', $postFieldsDetails);
         $statusDetails = $responseDetails->getStatusCode();
         $getVoucherDetails = json_decode($responseDetails);
-        if ($statusDetails == 200) {
-            if ($getVoucherDetails->status == 'CREATED') {
-                if ($getVoucherDetails->amount >= $request->total) {
-                    $dataVoucherDetails = [
-                        'voucherCode' => $request->voucherCode,
-                        'customerId' => $request->customerId,
-                        'applicationId' => $request->applicationId,
-                    ];
-                } else {
-                    $dataVoucherDetails = [];
-                }
-            } else {
-                $dataVoucherDetails = [];
-            }
+        if ($statusDetails != 200) {
+            return response()->json([
+                'massage' => $getVoucherDetails->message,
+                'status' => false,
+                'data' => null,
+            ], $statusDetails);
+        }
+        if ($getVoucherDetails->status != 'CREATED') {
+            return response()->json([
+                'massage' => 'CREATED' . 'لا يمكن اتمام الطلب لان حالة القسمية ليست ',
+                'status' => false,
+                'data' => null,
+            ], 200);
+        }
+        if ($getVoucherDetails->amount >= $request->total) {
+            $dataVoucherDetails = [
+                'voucherCode' => $request->voucherCode,
+                'customerId' => $request->customerId,
+                'applicationId' => $request->applicationId,
+            ];
         } else {
-            $dataVoucherDetails = [];
+            return response()->json([
+                'massage' => 'لا يمكن اتمام الطلب لان مجموع الطلب أكثر من مجموع القسمية',
+                'status' => false,
+                'data' => null,
+            ], 200);
         }
         // End getVoucherDetails
 
@@ -59,29 +59,47 @@ class EmcanPaymentController extends Controller
             $dataPreRedeem = [
                 'otpID_preRedeem' => $preRedeem->otpID,
             ];
-        } else {
-            $dataPreRedeem = [];
+            $data = array_merge($dataPreRedeem, $dataVoucherDetails);
+            return response()->json([
+                'massage' => 'تمت العملية بنجاح',
+                'status' => true,
+                'data' => $data,
+            ], 200);
         }
+        return response()->json([
+            'massage' => $preRedeem->message,
+            'status' => false,
+            'data' => null,
+        ], $statuspreRedeem);
         // End preRedeem
     }
 
-    public function otp(Request $request, CartRepository $cart, $id)
+    public function otp(Request $request)
     {
         $postFieldsredeem = [
             'customerId' => $request->customerId,
             'voucherCode' => $request->voucherCode,
-            'transactionId' => 'Shabaka-' . $request->id,
+            'transactionId' => 'Shabaka-' . $request->transactionId,
             'otp' => $request->otp,
-            'otpID' => $request->otpID_preRedeem,
+            'otpID' => $request->otpID,
         ];
+
         $responseredeem = $this->CallApi('/merchant/v1/vouchers/redeem', $postFieldsredeem);
         $statusredeem = $responseredeem->getStatusCode();
         $redeem = json_decode($responseredeem->body());
         if ($statusredeem == 200) {
-            return $redeem;
-        } else {
-
+            return response()->json([
+                'massage' => 'تمت العملية بنجاح',
+                'status' => true,
+                'data' => $redeem,
+            ], 200);
         }
+
+        return response()->json([
+            'massage' => $redeem->message,
+            'status' => false,
+            'data' => null,
+        ], $statusredeem);
     }
 
     public function CallApi($apiUrl, $postFields, $type = 'post')
