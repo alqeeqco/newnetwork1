@@ -36,7 +36,7 @@
 
             </td>
             <td>
-                {{ $order->total }}
+                {{ str_replace(',', '', number_format( $order->total , 2) )  }}
             </td>
             <td>
                 @can('Order-List')

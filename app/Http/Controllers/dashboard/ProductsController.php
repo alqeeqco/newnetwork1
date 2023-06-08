@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Colors;
+use App\Models\Images;
 use App\Models\Products;
 use App\Models\Specifications;
 use Illuminate\Http\Request;
@@ -100,7 +101,7 @@ class ProductsController extends Controller
                 $name = Str::random(12);
                 $path = $request->file('image');
                 $name = $name . time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $data['image'] = $name;
+                $data['image'] =  $name;
                 $path->move('dashboard/images', $name);
                 Cookie::queue('images', $data['image'] , 30);
             }
@@ -265,5 +266,32 @@ class ProductsController extends Controller
         $product->appear = $request->appear;
         $product->update();
 //        return redirect()->route('products.index');
+    }
+
+    public function reStore(Request $request , $id)
+    {
+        $oldProduct = Products::find($id);
+        $newProduct = $oldProduct->replicate();
+        $newProduct->save();
+
+        foreach ($oldProduct->specifications as $item) {
+            $newSpecification = $item->replicate();
+            $newProduct->specifications()->save($newSpecification);
+        }
+
+        foreach ($oldProduct->colors as $item) {
+            $newColor = $item->replicate();
+            $newProduct->colors()->save($newColor);
+        }
+
+        foreach ($oldProduct->imageable as $item) {
+            Images::create([
+                'image' => $item->image,
+                'imageable_type' => '\App\Models\products',
+                'imageable_id' => $newProduct->id,
+            ]);
+        }
+
+        return redirect()->back();
     }
 }
