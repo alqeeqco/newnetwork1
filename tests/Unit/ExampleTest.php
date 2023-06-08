@@ -13,10 +13,6 @@ class ExampleTest extends TestCase
      */
     public function test_that_true_is_true()
     {
-        $func = function ($a, $b) {
-            return $a + $b;
-        };
-
-        $this->assert
+        $this->assertTrue(true);
     }
 }
