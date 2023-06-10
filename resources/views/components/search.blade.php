@@ -1,9 +1,9 @@
 
     <div class="search-result-header">
         <h6 class="title">
-            {{ $products->count() }} Result Found </h6>
+            {{ $products->count() }} {{ __('lang.Result Found') }} </h6>
         <a href="{{ route('product.index') }}" class="view-all">
-            View All
+            {{ __('lang.View All') }}
         </a>
     </div>
     <div class="psearch-results">

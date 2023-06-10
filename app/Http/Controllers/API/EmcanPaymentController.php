@@ -78,7 +78,7 @@ class EmcanPaymentController extends Controller
             $dataPreRedeem = [
                 'otpID_preRedeem' => $preRedeem->otpID,
             ];
-            $data = array_merge($dataPreRedeem, $dataVoucherDetails);
+            $data = array_merge($dataVoucherDetails , $dataPreRedeem);
             return response()->json([
                 'massage' => 'تمت العملية بنجاح',
                 'status' => true,
