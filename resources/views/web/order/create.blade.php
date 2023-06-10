@@ -277,7 +277,7 @@
                                 <div class="img-btn">
                                     <img src="" alt="not found">
                                 </div>
-                                <button class="btn-bg-primary btn-content">
+                                <button class="btn-bg-primary btn-content" id="get-value" type='button'>
                                     {{ __('lang.process_to_checkout') }}
                                 </button>
                             </div>
@@ -297,6 +297,10 @@
 
 @section('js')
 <script>
+    $("#get-value").on("click", function() {
+    $("input[value='emkan']").attr("checked", true);
+    });
+
     var checkBox = Array.from(document.getElementsByClassName('card-adress'));
     $(document).on("change", "input[type='radio']", function() {
         if ($("input[type='radio']").is(':checked')) {
