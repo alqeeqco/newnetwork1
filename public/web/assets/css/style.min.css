@@ -20822,3 +20822,20 @@ input[type=radio]~label:after {
     bottom: 20px;
     right: 45px;
 }
+
+.btn-content {
+    width: fit-content;
+    border-radius: 6px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 6px 1rem;
+}
+
+.img-btn {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.img-btn img {
+    object-fit: contain;
+}

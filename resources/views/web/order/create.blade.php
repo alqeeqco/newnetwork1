@@ -27,7 +27,7 @@
                             </label>
                             <select class="form-select" name="country_id" aria-label="Default select example">
                                 @foreach( $countries as $country )
-                                    <option value="{{ $country->id }}">
+                                                                 <option value="{{ $country->id }}">
                                         @if( app()->getLocale() == 'en' )
                                             {{ $country->name_en }}
                                         @else
@@ -273,6 +273,14 @@
                                     {{ __('lang.tap_desc') }}
                                 </p>
                             </div>
+                            <div class="d-flex mb-3 mb-md-5">
+                                <div class="img-btn">
+                                    <img src="" alt="not found">
+                                </div>
+                                <button class="btn-bg-primary btn-content">
+                                    {{ __('lang.process_to_checkout') }}
+                                </button>
+                            </div>
                         </div>
                         <button type="submit" class="axil-btn btn-bg-primary checkout-btn">
                             {{ __('lang.process_to_checkout') }}
@@ -416,5 +424,3 @@
             });
         });
     </script>
-
-@endsection
