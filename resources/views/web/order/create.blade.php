@@ -27,13 +27,13 @@
                             </label>
                             <select class="form-select" name="country_id" aria-label="Default select example">
                                 @foreach( $countries as $country )
-                                                                 <option value="{{ $country->id }}">
-                                        @if( app()->getLocale() == 'en' )
-                                            {{ $country->name_en }}
-                                        @else
-                                            {{ $country->name_ar }}
-                                        @endif
-                                    </option>
+                                <option value="{{ $country->id }}">
+                                    @if( app()->getLocale() == 'en' )
+                                    {{ $country->name_en }}
+                                    @else
+                                    {{ $country->name_ar }}
+                                    @endif
+                                </option>
                                 @endforeach
 
                             </select>
@@ -44,14 +44,14 @@
                             </label>
                             <select class="form-select" name="city_id" aria-label="Default select example">
                                 @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">
-                                        @if( app()->getLocale() == 'en' )
-                                            {{ $city->name_en }}
-                                        @else
-                                            {{ $city->name_ar }}
-                                        @endif
+                                <option value="{{ $city->id }}">
+                                    @if( app()->getLocale() == 'en' )
+                                    {{ $city->name_en }}
+                                    @else
+                                    {{ $city->name_ar }}
+                                    @endif
 
-                                    </option>
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -167,75 +167,75 @@
                                     <tr class="order-product">
                                         <td>
                                             @if(app()->getLocale() == 'en')
-                                                {{ $item->product->name_en }}
+                                            {{ $item->product->name_en }}
                                             @else
-                                                {{ $item->product->name_ar }}
+                                            {{ $item->product->name_ar }}
                                             @endif
                                             <span class="quantity">x{{ $item->quantity }}</span>
-                                                <br>
-                                                <span>{{ __('lang.Colors') }} : </span>
-                                                <div class="color-variant-wrapper" style="display: inline-block;">
-                                                    <ul class="color-variant">
-                                                        <li class="mx-2 color-extra-01">
-                                                            <span style="background-color:{{ $item->color }}" class="color"></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-{{--                                                <br>--}}
-{{--                                                <p>--}}
-{{--                                                    <span>{{ __('lang.Colors') }} : </span>--}}
-{{--                                                    <span style="background-color:{{ $item->color }}; ">.</span>--}}
-{{--                                                </p>--}}
+                                            <br>
+                                            <span>{{ __('lang.Colors') }} : </span>
+                                            <div class="color-variant-wrapper" style="display: inline-block;">
+                                                <ul class="color-variant">
+                                                    <li class="mx-2 color-extra-01">
+                                                        <span style="background-color:{{ $item->color }}" class="color"></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            {{-- <br>--}}
+                                            {{-- <p>--}}
+                                            {{-- <span>{{ __('lang.Colors') }} : </span>--}}
+                                            {{-- <span style="background-color:{{ $item->color }}; ">.</span>--}}
+                                            {{-- </p>--}}
                                         </td>
                                         <td>
                                             @if($item->product->discount > 0)
-                                                {{ __('lang.sar').' '.number_format(($item->product->price * $item->quantity) - (($item->product->price * $item->quantity) * $item->product->discount/100) + (($tax_tax/100) * ($item->product->price * $item->quantity)) , 2)  }}
+                                            {{ __('lang.sar').' '.number_format(($item->product->price * $item->quantity) - (($item->product->price * $item->quantity) * $item->product->discount/100) + (($tax_tax/100) * ($item->product->price * $item->quantity)) , 2)  }}
                                             @else
-                                                {{ __('lang.sar').' '.number_format(($item->product->price * $item->quantity) + (($tax_tax/100) * ($item->product->price * $item->quantity)) , 2)  }}
+                                            {{ __('lang.sar').' '.number_format(($item->product->price * $item->quantity) + (($tax_tax/100) * ($item->product->price * $item->quantity)) , 2)  }}
                                             @endif
-{{--                                            {{ $item->quantity * $item->product->price }}--}}
-                                                <br>
-                                                <span class="text-tax">{{__('lang.tax_pro')}}</span>
+                                            {{-- {{ $item->quantity * $item->product->price }}--}}
+                                            <br>
+                                            <span class="text-tax">{{__('lang.tax_pro')}}</span>
                                         </td>
                                     </tr>
                                     @endforeach
 
-{{--                                    <tr class="order-shipping">--}}
-{{--                                        <td colspan="2">--}}
-{{--                                            <div class="shipping-amount">--}}
-{{--                                                <span class="title">{{ __('lang.shipping') }}</span>--}}
-{{--                                                <span class="amount">0.00{{ ' '.__('lang.sar') }}</span>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="input-group">--}}
-{{--                                                <input type="radio" id="shipping-value-0" data-id="0" value="0" class="shipping_value" name="shipping" checked>--}}
-{{--                                                <label for="shipping-value-0">--}}
-{{--                                                    {{ __('lang.free_shipping') }}--}}
-{{--                                                </label>--}}
-{{--                                            </div>--}}
-{{--                                            @foreach($shipping_options as $option)--}}
-{{--                                                <div class="input-group">--}}
-{{--                                                    <input type="radio" id="shipping-value-{{ $option->id }}" data-id="{{ $option->id }}" value="{{ $option->price }}" class="shipping_value" name="shipping">--}}
-{{--                                                    @if( app()->getLocale() == 'en' )--}}
-{{--                                                        <label for="shipping-value-{{ $option->id }}">--}}
-{{--                                                            {{ $option->name_en }}--}}
-{{--                                                        </label>--}}
-{{--                                                    @else--}}
-{{--                                                        <label for="shipping-value-{{ $option->id }}">--}}
-{{--                                                            {{ $option->name_ar }}--}}
-{{--                                                        </label>--}}
-{{--                                                    @endif--}}
-{{--                                                </div>--}}
-{{--                                            @endforeach--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                    <tr class="order-tax">--}}
-{{--                                        <td>--}}
-{{--                                            {{ __('lang.state_tax') }}--}}
-{{--                                        </td>--}}
-{{--                                        <td id="tax" data-value="{{ $tax->value }}">--}}
-{{--                                            {{ $tax->value.' %' }}--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
+                                    {{-- <tr class="order-shipping">--}}
+                                    {{-- <td colspan="2">--}}
+                                    {{-- <div class="shipping-amount">--}}
+                                    {{-- <span class="title">{{ __('lang.shipping') }}</span>--}}
+                                    {{-- <span class="amount">0.00{{ ' '.__('lang.sar') }}</span>--}}
+                                    {{-- </div>--}}
+                                    {{-- <div class="input-group">--}}
+                                    {{-- <input type="radio" id="shipping-value-0" data-id="0" value="0" class="shipping_value" name="shipping" checked>--}}
+                                    {{-- <label for="shipping-value-0">--}}
+                                    {{-- {{ __('lang.free_shipping') }}--}}
+                                    {{-- </label>--}}
+                                    {{-- </div>--}}
+                                    {{-- @foreach($shipping_options as $option)--}}
+                                    {{-- <div class="input-group">--}}
+                                    {{-- <input type="radio" id="shipping-value-{{ $option->id }}" data-id="{{ $option->id }}" value="{{ $option->price }}" class="shipping_value" name="shipping">--}}
+                                    {{-- @if( app()->getLocale() == 'en' )--}}
+                                    {{-- <label for="shipping-value-{{ $option->id }}">--}}
+                                    {{-- {{ $option->name_en }}--}}
+                                    {{-- </label>--}}
+                                    {{-- @else--}}
+                                    {{-- <label for="shipping-value-{{ $option->id }}">--}}
+                                    {{-- {{ $option->name_ar }}--}}
+                                    {{-- </label>--}}
+                                    {{-- @endif--}}
+                                    {{-- </div>--}}
+                                    {{-- @endforeach--}}
+                                    {{-- </td>--}}
+                                    {{-- </tr>--}}
+                                    {{-- <tr class="order-tax">--}}
+                                    {{-- <td>--}}
+                                    {{-- {{ __('lang.state_tax') }}--}}
+                                    {{-- </td>--}}
+                                    {{-- <td id="tax" data-value="{{ $tax->value }}">--}}
+                                    {{-- {{ $tax->value.' %' }}--}}
+                                    {{-- </td>--}}
+                                    {{-- </tr>--}}
                                     <input type="hidden" id="total_amount" name="total" value="0">
                                     <tr class="order-total">
                                         <td>
@@ -296,131 +296,224 @@
 @endsection
 
 @section('js')
-    <script>
-        var checkBox = Array.from(document.getElementsByClassName('card-adress'));
-        $(document).on("change", "input[type='radio']", function() {
-            if ($("input[type='radio']").is(':checked')) {
-                checkBox.forEach(el => {
-                   return  el.classList.remove('checked')
-                })
-                $(this).parent().addClass("checked")
+<script>
+    var checkBox = Array.from(document.getElementsByClassName('card-adress'));
+    $(document).on("change", "input[type='radio']", function() {
+        if ($("input[type='radio']").is(':checked')) {
+            checkBox.forEach(el => {
+                return el.classList.remove('checked')
+            })
+            $(this).parent().addClass("checked")
 
-            }
+        }
 
-        });
+    });
 
-        $(document).ready(function(e) {
-            let shipping_value = 0;
-            $(document).on('change', '.shipping_value', function (e) {
+    $(document).ready(function(e) {
+        let shipping_value = 0;
+        $(document).on('change', '.shipping_value', function(e) {
 
-                var id = $(this).data('id');
-                var shipping_value1 = $('#shipping-value-'+id).val();
-                console.log(shipping_value);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: '{{ url('cart/update_Shipping') }}',
-                    type: 'POST',
-                    data: "",
-                    success: function (data) {
-                        var total = data.total;
-                        // var tax = $('#tax').data('value');
-                        {{--var val =  parseInt(shipping_value) + {{ $items->total() }} + (parseInt(tax) / 100) * {{ $items->total() }};--}}
-                        // console.log('total' + total + ' tax ' + tax + ' shipping_value' + shipping_value1);
-                        // total = Math.round(total);
-                        total = total;
-                        var val = parseInt(shipping_value1) + total;
-                        // val = Math.round(val);
-                        val = val;
-                        $('.order-total-amount').text(val);
-                        $('#total_amount').val(val);
-                    }
-                });
-            });
-            {{--$(document).on('change', '.shipping_value', function(e) {--}}
-            {{--    var id = $(this).data('id'),--}}
-            {{--        price = $('#shipping-value-'+id).val(),--}}
-            {{--        tax = $('#tax').data('value');--}}
-
-            {{--    $('.amount').text(Math.round(price)+"{{ ' ' .__('lang.sar') }}");--}}
-            {{--    last_total = parseInt(tax) + parseInt(price) + {{ $cart->total() }}--}}
-            {{--    $('.order-total-amount').text(last_total);--}}
-
-            {{--    $('#total_amount').val(last_total);--}}
-
-            {{--});--}}
-
-
-            {{--last_total = parseInt(tax) + {{ $cart->total() }}--}}
-            {{--$('.order-total-amount').text(last_total)--}}
-
-            {{--$('#total_amount').val(last_total);--}}
-
-            // var tax = $('#tax').data('value');
-            var total = {{ $cart->total() }};
-            {{--var val =  parseInt(shipping_value) + {{ $items->total() }} + (parseInt(tax) / 100) * {{ $items->total() }};--}}
-
-            // total = Math.round(total);
-            total = total;
-            // tax = ((tax / 100) * total);
-            var last_total = parseInt(shipping_value) + total;
-
-            // last_total = Math.round(last_total);
-            last_total = last_total;
-
-            $('#total_amount').val(last_total);
-
-            $('.order-total-amount').text(last_total);
-        });
-
-        // Add Address
-        $(document).on('click','#submit-address' ,function (e) {
-            e.preventDefault();
-            let formdata = new FormData($('#add_address')[0]);
+            var id = $(this).data('id');
+            var shipping_value1 = $('#shipping-value-' + id).val();
+            console.log(shipping_value);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
+                url: '{{ url('
+                cart / update_Shipping ') }}',
                 type: 'POST',
-                url: '{{ route("account.add_address") }}',
-                data: formdata,
-                contentType: false,
-                processData: false,
-                success: function(response){
-
-                    if( response.error ) {
-                        $('#div-error').removeAttr('hidden');
-                        $.each(response.error, function(key, value) {
-                            console.log(value)
-                            $('#error').append(`
-                                <li>`+ value +`</li>
-                            `);
-                        });
-                    } else {
-                        $('#addAddress').modal('hide');
-
-                        $.ajax({
-                            url: "{{ route('order.create') }}",
-                        }).done(function (data) {
-                            $("#address-list").html(data);
-                        });
-                        document.location.reload(true);
+                data: "",
+                success: function(data) {
+                    var total = data.total;
+                    // var tax = $('#tax').data('value');
+                    {
+                        {
+                            --
+                            var val = parseInt(shipping_value) + {
+                                {
+                                    $items - > total()
+                                }
+                            } + (parseInt(tax) / 100) * {
+                                {
+                                    $items - > total()
+                                }
+                            };
+                            --
+                        }
                     }
-                },
-                error: function(response){
-                    $('#div-error').removeAttr('hidden');
-                    $.each(response.responseJSON.errors, function(key, value) {
-                        $('#error').append(`
-                                <li>`+ value +`</li>
-                            `);
-                    });
+                    // console.log('total' + total + ' tax ' + tax + ' shipping_value' + shipping_value1);
+                    // total = Math.round(total);
+                    total = total;
+                    var val = parseInt(shipping_value1) + total;
+                    // val = Math.round(val);
+                    val = val;
+                    $('.order-total-amount').text(val);
+                    $('#total_amount').val(val);
                 }
             });
         });
+        {
+            {
+                --$(document).on('change', '.shipping_value', function(e) {
+                        --
+                    }
+                } {
+                    {
+                        --
+                        var id = $(this).data('id'),
+                            --
+                    }
+                } {
+                    {
+                        --price = $('#shipping-value-' + id).val(), --
+                    }
+                } {
+                    {
+                        --tax = $('#tax').data('value');
+                        --
+                    }
+                }
+
+                {
+                    {
+                        --$('.amount').text(Math.round(price) + "{{ ' ' .__('lang.sar') }}");
+                        --
+                    }
+                } {
+                    {
+                        --last_total = parseInt(tax) + parseInt(price) + {
+                            {
+                                $cart - > total()
+                            }
+                        }--
+                    }
+                } {
+                    {
+                        --$('.order-total-amount').text(last_total);
+                        --
+                    }
+                }
+
+                {
+                    {
+                        --$('#total_amount').val(last_total);
+                        --
+                    }
+                }
+
+                {
+                    {
+                        --
+                    });
+                --
+            }
+        }
+
+
+        {
+            {
+                --last_total = parseInt(tax) + {
+                    {
+                        $cart - > total()
+                    }
+                }--
+            }
+        } {
+            {
+                --$('.order-total-amount').text(last_total) --
+            }
+        }
+
+        {
+            {
+                --$('#total_amount').val(last_total);
+                --
+            }
+        }
+
+        // var tax = $('#tax').data('value');
+        var total = {
+            {
+                $cart - > total()
+            }
+        };
+        {
+            {
+                --
+                var val = parseInt(shipping_value) + {
+                    {
+                        $items - > total()
+                    }
+                } + (parseInt(tax) / 100) * {
+                    {
+                        $items - > total()
+                    }
+                };
+                --
+            }
+        }
+
+        // total = Math.round(total);
+        total = total;
+        // tax = ((tax / 100) * total);
+        var last_total = parseInt(shipping_value) + total;
+
+        // last_total = Math.round(last_total);
+        last_total = last_total;
+
+        $('#total_amount').val(last_total);
+
+        $('.order-total-amount').text(last_total);
+    });
+
+    // Add Address
+    $(document).on('click', '#submit-address', function(e) {
+        e.preventDefault();
+        let formdata = new FormData($('#add_address')[0]);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("account.add_address") }}',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+
+                if (response.error) {
+                    $('#div-error').removeAttr('hidden');
+                    $.each(response.error, function(key, value) {
+                        console.log(value)
+                        $('#error').append(`
+                                <li>` + value + `</li>
+                            `);
+                    });
+                } else {
+                    $('#addAddress').modal('hide');
+
+                    $.ajax({
+                        url: "{{ route('order.create') }}",
+                    }).done(function(data) {
+                        $("#address-list").html(data);
+                    });
+                    document.location.reload(true);
+                }
+            },
+            error: function(response) {
+                $('#div-error').removeAttr('hidden');
+                $.each(response.responseJSON.errors, function(key, value) {
+                    $('#error').append(`
+                                <li>` + value + `</li>
+                            `);
+                });
+            }
+        });
     </script>
+@endsection

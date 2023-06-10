@@ -20823,6 +20823,7 @@ input[type=radio]~label:after {
     right: 45px;
 }
 
+
 .btn-content {
     width: fit-content;
     border-radius: 6px;
@@ -20831,11 +20832,10 @@ input[type=radio]~label:after {
     padding: 6px 1rem;
 }
 
-.img-btn {
+.img-btn{
     height: 40px;
     margin-right: 10px;
 }
-
-.img-btn img {
+.img-btn img{
     object-fit: contain;
 }

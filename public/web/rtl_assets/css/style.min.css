@@ -20477,11 +20477,10 @@ button.btn {
     padding: 6px 1rem;
 }
 
-.img-btn {
+.img-btn{
     margin-left: 10px;
     height: 40px;
 }
-
-.img-btn img {
+.img-btn img{
     object-fit: contain;
 }
