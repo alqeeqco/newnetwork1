@@ -298,7 +298,7 @@
 @section('js')
 <script>
     $("#get-value").on("click", function() {
-    $("input[value='emkan']").prop("checked", true);
+    $("input[value='emkan']").attr("checked", true);
     });
 
     var checkBox = Array.from(document.getElementsByClassName('card-adress'));
