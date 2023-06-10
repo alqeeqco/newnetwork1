@@ -251,7 +251,7 @@
                             </table>
                         </div>
                         <div class="order-payment-method">
-                            <div class="single-payment">
+                            {{-- <div class="single-payment">
                                 <div class="input-group">
                                     <input type="radio" id="radio4" value="emkan" name="payment_method">
                                     <label for="radio4">
@@ -272,19 +272,30 @@
                                 <p>
                                     {{ __('lang.tap_desc') }}
                                 </p>
-                            </div>
+                            </div> --}}
                             <div class="d-flex mb-3 mb-md-5 justify-content-between">
-                                <div class="img-btn">
-                                    <img src="" alt="not found">
+                                <div class="img-btn" style="width: 25%; height: 25%;">
+                                    <img src="{{ asset('payments_kw.png') }}" alt="not found">
                                 </div>
-                                <button class="btn-bg-primary btn-content">
-                                    {{ __('lang.process_to_checkout') }}
+                                <button class="btn-bg-primary btn-content" id="but-tap">
+                                    <input hidden type="radio" id="radio5" value="tap" name="payment_method">
+                                    {{ __('lang.tap_payment') }}
+                                </button>
+                            </div>
+
+                            <div class="d-flex mb-3 mb-md-5 justify-content-between">
+                                <div class="img-btn" style="width: 20%; height: 20%;">
+                                    <img src="{{ asset('AjFnjbps5KvZ1686217173.png') }}" alt="not found">
+                                </div>
+                                <button class="btn-bg-primary btn-content" id="but-emkan">
+                                    <input hidden type="radio" id="radio4" value="emkan" name="payment_method">
+                                    {{ __('lang.emkan_payment') }}
                                 </button>
                             </div>
                         </div>
-                        <button type="submit" class="axil-btn btn-bg-primary checkout-btn">
+                        {{-- <button type="submit" class="axil-btn btn-bg-primary checkout-btn">
                             {{ __('lang.process_to_checkout') }}
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
             </div>
@@ -297,6 +308,12 @@
 
 @section('js')
 <script>
+    $("#but-tap").on("click", function() {
+        $("input[value='tap']").attr("checked", true);
+    });
+    $("#but-emkan").on("click", function() {
+        $("input[value='emkan']").attr("checked", true);
+    });
     var checkBox = Array.from(document.getElementsByClassName('card-adress'));
     $(document).on("change", "input[type='radio']", function() {
         if ($("input[type='radio']").is(':checked')) {
