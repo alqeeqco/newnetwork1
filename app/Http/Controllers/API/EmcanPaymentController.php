@@ -5,11 +5,30 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class EmcanPaymentController extends Controller
 {
-    public function store(Request $request)
+
+    // public function createToken()
+    // {
+
+    //     return response()->json([
+    //         'massage' => 'تم أنشاء توكن بنجاح',
+    //         'status' => true,
+    //         'token' => Str::random(60)
+    //     ], 200);
+    // }
+
+    public function getVoucherDetails(Request $request)
     {
+        if($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN' || !$request->total){
+            return response()->json([
+                'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
+                'status' => false,
+                'data' => null,
+            ], 401);
+        }
         $postFieldsDetails = [
             'voucherCode' => $request->voucherCode,
             'customerId' => $request->customerId,
@@ -20,14 +39,14 @@ class EmcanPaymentController extends Controller
         $getVoucherDetails = json_decode($responseDetails);
         if ($statusDetails != 200) {
             return response()->json([
-                'massage' => $getVoucherDetails->message,
                 'status' => false,
+                'massage' => $getVoucherDetails->message,
                 'data' => null,
             ], $statusDetails);
         }
         if ($getVoucherDetails->status != 'CREATED') {
             return response()->json([
-                'massage' => 'CREATED' . 'لا يمكن اتمام الطلب لان حالة القسمية ليست ',
+                'massage' => 'CREATED' . ' لا يمكن اتمام الطلب لان حالة القسمية ليست',
                 'status' => false,
                 'data' => null,
             ], 200);
@@ -74,8 +93,16 @@ class EmcanPaymentController extends Controller
         // End preRedeem
     }
 
-    public function otp(Request $request)
+    public function preRedeem(Request $request)
     {
+        if($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN'){
+            return response()->json([
+                'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
+                'status' => false,
+                'data' => null,
+            ], 401);
+        }
+
         $postFieldsredeem = [
             'customerId' => $request->customerId,
             'voucherCode' => $request->voucherCode,
@@ -104,13 +131,15 @@ class EmcanPaymentController extends Controller
 
     public function CallApi($apiUrl, $postFields, $type = 'post')
     {
+        $amen = '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN';
+
         $token = base64_encode('mB7fI4w30q0F8wDOUEMxT2Ryaiwa:tTQXHB1KpbD5GcwjkONwv52Hau0a');
 
         $headers = [
             'Content-type'  => 'application/json',
             'Authorization' => 'Basic ' . $token,
             'Accept' => 'application/json',
-            'LNG' => 'EN',
+            'LNG' => 'AR',
             'CHN' => 'MERCHANT',
             'MERCHANT_CODE' => 'Shabaka',
         ];
