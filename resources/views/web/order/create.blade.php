@@ -273,7 +273,7 @@
                                     {{ __('lang.tap_desc') }}
                                 </p>
                             </div>
-                            <div class="d-flex mb-3 mb-md-5">
+                            <div class="d-flex mb-3 mb-md-5 justify-content-between">
                                 <div class="img-btn">
                                     <img src="" alt="not found">
                                 </div>
@@ -301,7 +301,7 @@
     $(document).on("change", "input[type='radio']", function() {
         if ($("input[type='radio']").is(':checked')) {
             checkBox.forEach(el => {
-                return el.classList.remove('checked')
+               return  el.classList.remove('checked')
             })
             $(this).parent().addClass("checked")
 
@@ -311,10 +311,10 @@
 
     $(document).ready(function(e) {
         let shipping_value = 0;
-        $(document).on('change', '.shipping_value', function(e) {
+        $(document).on('change', '.shipping_value', function (e) {
 
             var id = $(this).data('id');
-            var shipping_value1 = $('#shipping-value-' + id).val();
+            var shipping_value1 = $('#shipping-value-'+id).val();
             console.log(shipping_value);
             $.ajaxSetup({
                 headers: {
@@ -323,28 +323,13 @@
             });
 
             $.ajax({
-                url: '{{ url('
-                cart / update_Shipping ') }}',
+                url: '{{ url('cart/update_Shipping') }}',
                 type: 'POST',
                 data: "",
-                success: function(data) {
+                success: function (data) {
                     var total = data.total;
                     // var tax = $('#tax').data('value');
-                    {
-                        {
-                            --
-                            var val = parseInt(shipping_value) + {
-                                {
-                                    $items - > total()
-                                }
-                            } + (parseInt(tax) / 100) * {
-                                {
-                                    $items - > total()
-                                }
-                            };
-                            --
-                        }
-                    }
+                    {{--var val =  parseInt(shipping_value) + {{ $items->total() }} + (parseInt(tax) / 100) * {{ $items->total() }};--}}
                     // console.log('total' + total + ' tax ' + tax + ' shipping_value' + shipping_value1);
                     // total = Math.round(total);
                     total = total;
@@ -356,106 +341,28 @@
                 }
             });
         });
-        {
-            {
-                --$(document).on('change', '.shipping_value', function(e) {
-                        --
-                    }
-                } {
-                    {
-                        --
-                        var id = $(this).data('id'),
-                            --
-                    }
-                } {
-                    {
-                        --price = $('#shipping-value-' + id).val(), --
-                    }
-                } {
-                    {
-                        --tax = $('#tax').data('value');
-                        --
-                    }
-                }
+        {{--$(document).on('change', '.shipping_value', function(e) {--}}
+        {{--    var id = $(this).data('id'),--}}
+        {{--        price = $('#shipping-value-'+id).val(),--}}
+        {{--        tax = $('#tax').data('value');--}}
 
-                {
-                    {
-                        --$('.amount').text(Math.round(price) + "{{ ' ' .__('lang.sar') }}");
-                        --
-                    }
-                } {
-                    {
-                        --last_total = parseInt(tax) + parseInt(price) + {
-                            {
-                                $cart - > total()
-                            }
-                        }--
-                    }
-                } {
-                    {
-                        --$('.order-total-amount').text(last_total);
-                        --
-                    }
-                }
+        {{--    $('.amount').text(Math.round(price)+"{{ ' ' .__('lang.sar') }}");--}}
+        {{--    last_total = parseInt(tax) + parseInt(price) + {{ $cart->total() }}--}}
+        {{--    $('.order-total-amount').text(last_total);--}}
 
-                {
-                    {
-                        --$('#total_amount').val(last_total);
-                        --
-                    }
-                }
+        {{--    $('#total_amount').val(last_total);--}}
 
-                {
-                    {
-                        --
-                    });
-                --
-            }
-        }
+        {{--});--}}
 
 
-        {
-            {
-                --last_total = parseInt(tax) + {
-                    {
-                        $cart - > total()
-                    }
-                }--
-            }
-        } {
-            {
-                --$('.order-total-amount').text(last_total) --
-            }
-        }
+        {{--last_total = parseInt(tax) + {{ $cart->total() }}--}}
+        {{--$('.order-total-amount').text(last_total)--}}
 
-        {
-            {
-                --$('#total_amount').val(last_total);
-                --
-            }
-        }
+        {{--$('#total_amount').val(last_total);--}}
 
         // var tax = $('#tax').data('value');
-        var total = {
-            {
-                $cart - > total()
-            }
-        };
-        {
-            {
-                --
-                var val = parseInt(shipping_value) + {
-                    {
-                        $items - > total()
-                    }
-                } + (parseInt(tax) / 100) * {
-                    {
-                        $items - > total()
-                    }
-                };
-                --
-            }
-        }
+        var total = {{ $cart->total() }};
+        {{--var val =  parseInt(shipping_value) + {{ $items->total() }} + (parseInt(tax) / 100) * {{ $items->total() }};--}}
 
         // total = Math.round(total);
         total = total;
@@ -471,7 +378,7 @@
     });
 
     // Add Address
-    $(document).on('click', '#submit-address', function(e) {
+    $(document).on('click','#submit-address' ,function (e) {
         e.preventDefault();
         let formdata = new FormData($('#add_address')[0]);
         $.ajaxSetup({
@@ -485,37 +392,36 @@
             data: formdata,
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function(response){
 
-                if (response.error) {
+                if( response.error ) {
                     $('#div-error').removeAttr('hidden');
                     $.each(response.error, function(key, value) {
                         console.log(value)
                         $('#error').append(`
-                                <li>` + value + `</li>
-                            `);
+                            <li>`+ value +`</li>
+                        `);
                     });
                 } else {
                     $('#addAddress').modal('hide');
 
                     $.ajax({
                         url: "{{ route('order.create') }}",
-                    }).done(function(data) {
+                    }).done(function (data) {
                         $("#address-list").html(data);
                     });
                     document.location.reload(true);
                 }
             },
-            error: function(response) {
+            error: function(response){
                 $('#div-error').removeAttr('hidden');
                 $.each(response.responseJSON.errors, function(key, value) {
                     $('#error').append(`
-                                <li>` + value + `</li>
-                            `);
+                            <li>`+ value +`</li>
+                        `);
                 });
             }
         });
     });
 </script>
-
 @endsection
