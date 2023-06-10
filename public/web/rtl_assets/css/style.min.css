@@ -20468,3 +20468,18 @@ button.btn {
     bottom: 20px;
     right: 45px;
 }
+
+.btn-content {
+    width: fit-content;
+    border-radius: 6px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 6px 1rem;
+}
+.img-btn{
+    margin-left: 10px;
+    height: 40px;
+}
+.img-btn img{
+    object-fit: contain;
+}
