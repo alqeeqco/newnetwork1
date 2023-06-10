@@ -515,7 +515,5 @@
                 });
             }
         });
-    });
-</script>
-
+    </script>
 @endsection
