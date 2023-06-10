@@ -757,7 +757,7 @@
         <!-- End Axil Product Poster Area  -->
     @endif
 
-    <div class="axil-poster">
+    <div class="axil-poster" style="direction: {{ app()->getLocale() == 'ar' ? 'ltr' : 'rtl' }}">
         <div class="container">
             <div class="row">
                 <div class="slider-image">
