@@ -413,5 +413,12 @@ return
         'branch' => 'Branch',
         'call_date' => 'Call Date',
         'appointments' => 'Appointments contact',
+        'Write Something....' => 'Write Something....',
+        'Result Found' => 'Result Found',
+        'View All' => 'View All',
+        'Don’t Miss!!' => 'Don’t Miss!!',
+        'Best Sales Offer' => 'Best Sales Offer',
+        'Grab Yours' => 'Grab Yours',
+        'Shop Now' => 'Shop Now',
     ];
 ?>

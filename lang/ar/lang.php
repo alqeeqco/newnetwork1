@@ -400,5 +400,12 @@ return
         'branch' => 'الفرع',
         'call_date' => 'موعد الإتصال',
         'appointments' => 'المواعيد الإتصال',
+        'Write Something....' => 'أكتب شيئا....',
+        'Result Found' => 'تم العثور على النتيجة',
+        'View All' => 'مشاهدة الكل',
+        'Don’t Miss!!' => 'لا تفوت !!',
+        'Best Sales Offer' => 'أفضل عرض مبيعات',
+        'Grab Yours' => 'انتزاع لك',
+        'Shop Now' => 'تسوق الآن',
     ];
 ?>

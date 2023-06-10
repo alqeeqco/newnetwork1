@@ -436,7 +436,7 @@
       <div class="card-header">
 
         <div class="input-group">
-          <input type="search" class="form-control name-filter" name="name-filter" id="prod-search" placeholder="Write Something....">
+          <input type="search" class="form-control name-filter" name="name-filter" id="prod-search" placeholder="{{ __('lang.Write Something....') }}">
           <button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
         </div>
 
@@ -457,11 +457,11 @@
           <div class="content">
             <div class="section-title-wrapper">
               <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i>
-                Don’t Miss!!</span>
-              <h3 class="title">Best Sales Offer<br> Grab Yours</h3>
+                {{ __('lang.Don’t Miss!!') }}</span>
+              <h3 class="title">{{ __('Best Sales Offer') }}<br> {{ __('lang.Grab Yours') }}</h3>
             </div>
             <div class="poster-countdown countdown"></div>
-            <a href="shop.html" class="axil-btn btn-bg-primary">Shop Now <i class="fal fa-long-arrow-right"></i></a>
+            <a href="shop.html" class="axil-btn btn-bg-primary">{{ __('lang.Shop Now') }} <i class="fal fa-long-arrow-right"></i></a>
           </div>
         </div>
       </div>
