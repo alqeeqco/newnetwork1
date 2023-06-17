@@ -19,7 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('createToken' , [EmcanPaymentController::class , 'createToken']);
 Route::post('getVoucherDetails' , [EmcanPaymentController::class , 'getVoucherDetails']);
 Route::post('preRedeem' , [EmcanPaymentController::class , 'preRedeem']);
+Route::post('redeem' , [EmcanPaymentController::class , 'redeem']);
+Route::post('preRefund' , [EmcanPaymentController::class , 'preRefund']);
+Route::post('refund' , [EmcanPaymentController::class , 'refund']);
 

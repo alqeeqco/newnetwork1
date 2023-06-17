@@ -6,23 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use PhpParser\Node\Stmt\Return_;
 
 class EmcanPaymentController extends Controller
 {
 
-    // public function createToken()
-    // {
-
-    //     return response()->json([
-    //         'massage' => 'تم أنشاء توكن بنجاح',
-    //         'status' => true,
-    //         'token' => Str::random(60)
-    //     ], 200);
-    // }
-
     public function getVoucherDetails(Request $request)
     {
-        if($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN' || !$request->total){
+        if ($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN') {
             return response()->json([
                 'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
                 'status' => false,
@@ -44,45 +35,36 @@ class EmcanPaymentController extends Controller
                 'data' => null,
             ], $statusDetails);
         }
-        if ($getVoucherDetails->status != 'CREATED') {
-            return response()->json([
-                'massage' => 'CREATED' . ' لا يمكن اتمام الطلب لان حالة القسمية ليست',
-                'status' => false,
-                'data' => null,
-            ], 200);
-        }
-        if ($getVoucherDetails->amount >= $request->total) {
-            $dataVoucherDetails = [
-                'voucherCode' => $request->voucherCode,
-                'customerId' => $request->customerId,
-                'applicationId' => $request->applicationId,
-            ];
-        } else {
-            return response()->json([
-                'massage' => 'لا يمكن اتمام الطلب لان مجموع الطلب أكثر من مجموع القسمية',
-                'status' => false,
-                'data' => null,
-            ], 200);
-        }
-        // End getVoucherDetails
 
-        // Start preRedeem
+        return response()->json([
+            'massage' => 'تمت العملية بنجاح',
+            'status' => true,
+            'data' => $getVoucherDetails,
+        ], 200);
+
+    }
+
+    public function preRedeem(Request $request)
+    {
+        if ($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN') {
+            return response()->json([
+                'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
+                'status' => false,
+                'data' => null,
+            ], 401);
+        }
         $postFieldspreRedeem = [
-            'customerId' =>  $dataVoucherDetails['customerId'],
+            'customerId' =>  $request->customerId,
         ];
         $responsepreRedeem = $this->CallApi('/merchant/v1/vouchers/preRedeem', $postFieldspreRedeem);
         $statuspreRedeem = $responsepreRedeem->getStatusCode();
         $preRedeem = json_decode($responsepreRedeem->body());
 
         if ($statuspreRedeem == 200) {
-            $dataPreRedeem = [
-                'otpID_preRedeem' => $preRedeem->otpID,
-            ];
-            $data = array_merge($dataVoucherDetails , $dataPreRedeem);
             return response()->json([
                 'massage' => 'تمت العملية بنجاح',
                 'status' => true,
-                'data' => $data,
+                'data' => $preRedeem,
             ], 200);
         }
         return response()->json([
@@ -90,12 +72,11 @@ class EmcanPaymentController extends Controller
             'status' => false,
             'data' => null,
         ], $statuspreRedeem);
-        // End preRedeem
     }
 
-    public function preRedeem(Request $request)
+    public function redeem(Request $request)
     {
-        if($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN'){
+        if ($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN') {
             return response()->json([
                 'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
                 'status' => false,
@@ -127,6 +108,70 @@ class EmcanPaymentController extends Controller
             'status' => false,
             'data' => null,
         ], $statusredeem);
+    }
+
+    public function preRefund(Request $request)
+    {
+        if ($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN') {
+            return response()->json([
+                'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
+                'status' => false,
+                'data' => null,
+            ], 401);
+        }
+
+        $postFieldsRefund = [
+            'customerId' => $request->customerId,
+        ];
+
+        $responseRefund = $this->CallApi('/merchant/v1/vouchers/preRefund', $postFieldsRefund);
+        $statusRefund = $responseRefund->getStatusCode();
+        $Refund = json_decode($responseRefund->body());
+
+        if ($statusRefund != 200) {
+            return response()->json([
+                'massage' => $Refund->message,
+                'status' => false,
+                'data' => null,
+            ], $statusRefund);
+        }
+        return response()->json([
+            'massage' => 'تمت العملية بنحجاح',
+            'status' => true,
+            'data' => $Refund,
+        ], 200);
+    }
+
+    public function refund(Request $request){
+        if ($request->header('Shabaka-EM-AMEN') != '4tyJG86m5rqaGKBrXkQKwYixqJtNzDfmiwJuupCwg0uzXIaDkaJDoNmjSicw-AMEN' || !$request->total) {
+            return response()->json([
+                'massage' => 'لا يمكن أتمام العملية بسبب حدوث خطأ ما',
+                'status' => false,
+                'data' => null,
+            ], 401);
+        }
+        $postFieldspreRedeem = [
+            'customerId' => $request->customerId,
+            'voucherId' =>  $request->voucherId,
+            'otp' =>  $request->otp,
+            'otpID' =>  $request->otpID,
+        ];
+        $responsepreRedeem = $this->CallApi('/merchant/v1/vouchers/refund', $postFieldspreRedeem);
+        $statuspreRedeem = $responsepreRedeem->getStatusCode();
+        $preRedeem = json_decode($responsepreRedeem->body());
+
+        if ($statuspreRedeem == 200) {
+            return response()->json([
+                'massage' => 'تمت العملية بنجاح',
+                'status' => true,
+                'data' => $preRedeem,
+            ], 200);
+        }
+        return response()->json([
+            'massage' => $preRedeem->message,
+            'status' => false,
+            'data' => null,
+        ], $statuspreRedeem);
     }
 
     public function CallApi($apiUrl, $postFields, $type = 'post')
