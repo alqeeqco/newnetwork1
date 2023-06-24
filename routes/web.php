@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboard\AdminsController;
+use App\Http\Controllers\dashboard\AppointmentsController as DashboardAppointmentsController;
 use App\Http\Controllers\dashboard\ImagesController;
 use App\Http\Controllers\dashboard\RolesController;
 use App\Http\Controllers\web\CartController;
@@ -89,6 +90,7 @@ Route::group([
     Route::post('services/proposal', [ProposalsController::class, 'store'])->withoutMiddleware(['auth:web'])->name('proposal.store');
     Route::get('export/proposal', [DashboardProposalsController::class, 'export'])->withoutMiddleware(['auth:web'])->name('proposal.export');
     Route::post('services/appointment', [AppointmentsController::class, 'store'])->withoutMiddleware(['auth:web'])->name('appointment.store');
+    Route::get('export/appointment', [DashboardAppointmentsController::class, 'export'])->withoutMiddleware(['auth:web'])->name('appointment.export');
 
     // My Account
     Route::controller(MyAccountController::class)

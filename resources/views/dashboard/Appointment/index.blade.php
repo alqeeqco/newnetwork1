@@ -37,6 +37,11 @@
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label fw-bolder fs-3 mb-1">{{ __('lang.title_proposal') }}</span>
             </h3>
+            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+            title="Click to add a productsegory">
+            <a href="{{ route('appointment.export') }}" class="btn btn-sm btn-light-primary">
+            </span>{{ 'Export' }}</a>
+        </div>
         </div>
         @if(Session::has('success'))
             <div class="alert alert-success" style="margin: 15px">

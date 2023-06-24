@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\AppointmentsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AppointmentsController extends Controller
 {
@@ -35,5 +37,10 @@ class AppointmentsController extends Controller
             $proposal->delete();
         }
         return redirect()->route('admin.index')->with('success', __('lang.success'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new AppointmentsExport, 'Appointments.xlsx');
     }
 }
