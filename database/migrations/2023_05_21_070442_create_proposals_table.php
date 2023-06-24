@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('city' , 255);
             $table->string('fill_name', 255);
+            $table->string('email', 255)->nullable();
             $table->string('phone', 255);
             $table->string('employer', 255);
             $table->unsignedInteger('salary');
-            $table->string('job_duration');
+            $table->string('job_duration')->nullable();
             $table->string('total_liabilities', 255);
             $table->boolean('agree_terms');
             $table->timestamps();

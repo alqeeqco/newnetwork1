@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\ProposalsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProposalsController extends Controller
 {
@@ -35,5 +37,10 @@ class ProposalsController extends Controller
             $proposal->delete();
         }
         return redirect()->route('admin.index')->with('success', __('lang.success'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProposalsExport, 'Proposals.xlsx');
     }
 }

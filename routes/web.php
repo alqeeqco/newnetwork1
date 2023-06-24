@@ -11,6 +11,7 @@ use App\Http\Controllers\web\MyAccountController;
 
 use App\Http\Controllers\dashboard\CategoriesController;
 use App\Http\Controllers\dashboard\ProductsController;
+use App\Http\Controllers\dashboard\ProposalsController as DashboardProposalsController;
 use App\Http\Controllers\web\AppointmentsController;
 use App\Http\Controllers\web\EmcanPaymentController;
 use App\Http\Controllers\web\OrderController;
@@ -86,6 +87,7 @@ Route::group([
     Route::get('installment', [EmcanPaymentController::class, 'services_emkan'])->withoutMiddleware(['auth:web']);
     Route::get('services/proposal', [ProposalsController::class, 'create'])->withoutMiddleware(['auth:web']);
     Route::post('services/proposal', [ProposalsController::class, 'store'])->withoutMiddleware(['auth:web'])->name('proposal.store');
+    Route::get('export/proposal', [DashboardProposalsController::class, 'export'])->withoutMiddleware(['auth:web'])->name('proposal.export');
     Route::post('services/appointment', [AppointmentsController::class, 'store'])->withoutMiddleware(['auth:web'])->name('appointment.store');
 
     // My Account

@@ -33,7 +33,8 @@ class ProposalsController extends Controller
                 'phone' => 'required|numeric',
                 'employer' => 'required|max:250',
                 'salary' => 'required|numeric|min:0',
-                'job_duration' => 'required|max:250',
+                'job_duration' => 'nullable|max:250',
+                'email' => 'nullable|max:250',
                 'total_liabilities' => 'required|max:250',
                 'agree_terms' => 'required',
             ],[
@@ -57,8 +58,13 @@ class ProposalsController extends Controller
         );
         $data = $request->all();
         $data['agree_terms'] = $request->agree_terms == 'ON' ? 1 : 0;
-        Proposal::create($data);
-        toastr()->success(__('lang.proposal_done'));
+        $proposal = Proposal::create($data);
+        $salary = $proposal->salary * (40/100);
+        if($proposal->employer == 'متقاعد' || $proposal->employer == 'غير موظف' || $salary < $proposal->total_liabilities){
+            toastr()->error('اعتذار للعميل إذا لم تتوفر فيه جميع الشروط السابقة');
+        }else{
+            toastr()->success(__('lang.proposal_done'));
+        }
         return redirect()->back();
     }
 }

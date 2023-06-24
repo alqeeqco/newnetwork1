@@ -15,7 +15,8 @@
   <main class="container mb-5">
     <section class="col-12 col-lg-8">
       <div class="image">
-        <img src="{{ asset('123498.png') }}" alt="not found">
+        <img src="{{ Request::root() . '/dashboard/images/' . App\Models\Ads::where('type' , 'order')->where('status' , 1)
+        ->orderBy('id' , 'DESC')->first()->image }}" alt="not found">
       </div>
       <div class="accordion my-3">
         <button class="btn collapsed btn-details w-auto py-2 m-auto d-flex" data-bs-toggle="collapse"
@@ -39,6 +40,8 @@
               <li>يبدأ العمر من 20 سنة</li>
               <li>يبدأ الراتب الشهري من 2000 للسعودي و5000 للمقيم</li>
               <li>انتظام وظيفي 3 اشهر للسعودي و12 شهر للمقيم</li>
+              <li>يجب أن تكون الوظيفة اما قطاع حكومي او قطاع خاص.</li>
+              <li>يجب أال يكون مجموع االلتزامات الشهرية أكبر من %40 من الراتب الشهري. </li>
               <li>تطبق الشروط والأحكام</li>
             </ul>
           </div>
@@ -67,13 +70,6 @@
           </div>
           <form action="{{ route('proposal.store') }}" method="POST">
             @csrf
-            <div class="mb-3">
-                <label class="mb-2 mb-md-3"> المدينة </label>
-                <input type="text" name="city" class="form-control" value="{{ old('city') }}">
-                @error('city')
-                    <div class="alert text-danger p-0">{{ $message }}</div>
-                @enderror
-            </div>
 
             <div class="mb-3">
                 <label class="mb-2 mb-md-3">الاسم الرباعي </label>
@@ -84,45 +80,73 @@
             </div>
 
             <div class="mb-3">
-                <label class="mb-2 mb-md-3"> رقم جوالك ؟ </label>
-                <input type="number" name="phone" class="form-control" value="{{ old('phone') }}">
-                @error('phone')
+                <label class="mb-2 mb-md-3"> المدينة </label>
+                <select class="form-select" name="city">
+                  <option></option>
+                  <option value="الرياض" @selected(old('city') == 'الرياض')> الرياض </option>
+                  <option value="جدة" @selected(old('city') == 'جدة')> جدة </option>
+                  <option value="تبوك" @selected(old('city') == 'تبوك')> تبوك </option>
+                </select>
+                {{-- <input type="text" name="city" class="form-control" value="{{ old('city') }}"> --}}
+                @error('city')
                     <div class="alert text-danger p-0">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
-                <label class="mb-2 mb-md-3"> جهة العمل </label>
+                <label class="mb-2 mb-md-3"> الوظيفة </label>
                 <select class="form-select" name="employer">
                     <option selected> </option>
-                    <option value="حكومي">حكومي</option>
-                    <option value="خاص">خاص</option>
+                    <option value="قطاع حكومي">قطاع حكومي</option>
+                    <option value="قطاع خاص">قطاع خاص</option>
                     <option value="متقاعد">متقاعد</option>
+                    <option value="غير موظف">غير موظف</option>
                 </select>
                 @error('employer')
                     <div class="alert text-danger p-0">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
-                <label class="mb-2 mb-md-3">مقدار الراتب مسجل بالتأمينات؟ ( لايقل عن 2000 ريال للسعودي و 5000 ريال للمقيم)</label>
+                <label class="mb-2 mb-md-3">الراتب الشهري</label>
                 <input type="number" name="salary" class="form-control"  value="{{ old('salary') }}">
                 @error('salary')
                     <div class="alert text-danger p-0">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
+                <label class="mb-2 mb-md-3">االلتزامات الشهرية</label>
+                <input type="number" name="total_liabilities" class="form-control"  value="{{ old('total_liabilities') }}">
+                @error('total_liabilities')
+                    <div class="alert text-danger p-0">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="mb-2 mb-md-3">  رقم الجوال</label>
+                <input type="number" name="phone" class="form-control" value="{{ old('phone') }}">
+                @error('phone')
+                    <div class="alert text-danger p-0">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="mb-2 mb-md-3">البريد الإلكتروني</label>
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+                @error('email')
+                    <div class="alert text-danger p-0">{{ $message }}</div>
+                @enderror
+            </div>
+
+            {{-- <div class="mb-3">
                 <label class="mb-2 mb-md-3">مدة الخدمة للوظيفة الحالية بالأشهر؟ ( اقل مدة 3 اشهر للسعودي و12 شهر للمقيم )</label>
                 <input type="text" name="job_duration" class="form-control" value="{{ old('job_duration') }}">
                 @error('job_duration')
                     <div class="alert text-danger p-0">{{ $message }}</div>
                 @enderror
-            </div>
-            <div class="mb-3">
-                <label class="mb-2 mb-md-3">اجمالي الالتزامات الشهرية التي عليك الان؟</label>
-                <input type="text" name="total_liabilities" class="form-control"  value="{{ old('total_liabilities') }}">
-                @error('total_liabilities')
-                    <div class="alert text-danger p-0">{{ $message }}</div>
-                @enderror
-            </div>
+            </div> --}}
+
             <div class="form-check mb-3 d-flex align-items-center">
                 <input class="form-check-input mt-0" name="agree_terms" type="checkbox" id="checkReq" required>
                 <label class="form-check-label" for="checkReq">ارسالك للطب يعني
@@ -158,7 +182,10 @@
               <label class="mb-2"> موعد الاتصال : </label>
               <select class="form-select" name="call_date">
                 <option></option>
-                <option value="٩ صباحًا">٩ صباحًا</option>
+                <option value="من 12م الى 4م">من 12م الى 4م</option>
+                <option value="من 4م الى 8م">من 4م الى 8م</option>
+                <option value="من 8م الى 12ص">من 8م الى 12ص</option>
+                {{-- <option value="٩ صباحًا">٩ صباحًا</option>
                 <option value="١٠ صباحًا">١٠ صباحًا</option>
                 <option value="١١ صباحًا">١١ صباحًا</option>
                 <option value="١٢ ظهرًا">١٢ ظهرًا</option>
@@ -172,7 +199,7 @@
                 <option value="٨ مساءً">٨ مساءً</option>
                 <option value="٩ مساءً">٩ مساءً</option>
                 <option value="١٠ مساءً">١٠ مساءً</option>
-                <option value="١١ مساءً">١١ مساءً</option>
+                <option value="١١ مساءً">١١ مساءً</option> --}}
               </select>
               @error('call_date')
               <div class="alert text-danger p-0">{{ $message }}</div>

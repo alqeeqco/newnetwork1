@@ -5,9 +5,9 @@
             <th>{{ __('lang.city') }}</th>
             <th>{{ __('lang.fill_name') }}</th>
             <th>{{ __('lang.phone') }}</th>
+            <th>{{ __('lang.email') }}</th>
             <th>{{ __('lang.employer') }}</th>
             <th>{{ __('lang.salary') }}</th>
-            <th>{{ __('lang.job_duration') }}</th>
             <th>{{ __('lang.total_liabilities') }}</th>
             {{-- <th>{{ __('lang.agree_terms') }}</th> --}}
             <th>{{ __('lang.actions') }}</th>
@@ -43,6 +43,14 @@
                 <td>
                     <div class="d-flex justify-content-start flex-column">
                         <p class="text-dark fw-bolder text-hover-primary fs-6">
+                                {{ $key->email }}
+                        </p>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="d-flex justify-content-start flex-column">
+                        <p class="text-dark fw-bolder text-hover-primary fs-6">
                                 {{ $key->employer }}
                         </p>
                     </div>
@@ -56,13 +64,13 @@
                     </div>
                 </td>
 
-                <td>
+                {{-- <td>
                     <div class="d-flex justify-content-start flex-column">
                         <p class="text-dark fw-bolder text-hover-primary fs-6">
                                 {{ $key->job_duration }}
                         </p>
                     </div>
-                </td>
+                </td> --}}
 
                 <td>
                     <div class="d-flex justify-content-start flex-column">

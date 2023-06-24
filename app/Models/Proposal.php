@@ -9,5 +9,5 @@ class Proposal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['city' , 'fill_name' , 'phone' , 'employer' , 'salary' , 'job_duration' , 'total_liabilities' , 'agree_terms'];
+    protected $fillable = ['city' , 'fill_name' , 'phone' , 'email' , 'employer' , 'salary' , 'job_duration' , 'total_liabilities' , 'agree_terms'];
 }

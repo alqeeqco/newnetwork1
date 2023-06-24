@@ -14,8 +14,7 @@
 @section('content')
 
     <div class="box-image">
-      <img src="{{ Request::root() . '/dashboard/images/' . App\Models\Ads::where('type' , 'order')->where('status' , 1)
-      ->orderBy('id' , 'DESC')->first()->image }}" alt="not found">
+      <img src="{{ asset('web/img.jpg') }}" alt="not found">
     </div>
     <!--<div class="box-image">-->
     <!--  <img src="./images/img2.jpg" alt="not found">-->

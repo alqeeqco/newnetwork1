@@ -189,6 +189,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Application Service Providers...
@@ -215,6 +216,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
