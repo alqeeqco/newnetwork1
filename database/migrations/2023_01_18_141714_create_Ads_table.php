@@ -9,6 +9,7 @@ class CreateAdsTable extends Migration {
 	{
 		Schema::create('ads', function(Blueprint $table) {
 			$table->increments('id');
+            $table->enum('type' , ['general' , 'order']);
 			$table->string('title_en', 255);
 			$table->string('title_ar', 255);
 			$table->longText('url')->default('#');

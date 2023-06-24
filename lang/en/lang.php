@@ -420,5 +420,8 @@ return
         'Best Sales Offer' => 'Best Sales Offer',
         'Grab Yours' => 'Grab Yours',
         'Shop Now' => 'Shop Now',
+        'order_page' => 'order page',
+        'general' => 'general',
+        'type' => 'type',
     ];
 ?>

@@ -38,12 +38,14 @@
                     <input type="text" name="url" class="form-control form-control-solid" value="{{ old('url' , '') }}">
                 </div>
 
-{{--                <div class="mb-10">--}}
-{{--                    <label class="form-label">{{ __('lang.location') }}</label>--}}
-{{--                    <select class="mb-10 form-select form-select-solid" aria-label="Select example" name="location">--}}
-{{--                        <option value="lastPage">Open this select menu</option>--}}
-{{--                    </select>--}}
-{{--                </div>--}}
+
+               <div class="mb-10">
+                    <label class="form-label">{{ __('lang.location') }}</label>
+                    <select class="mb-10 form-select form-select-solid" aria-label="Select example" name="type">
+                        <option value="general">{{ __('lang.general') }}</option>
+                        <option value="order">{{ __('lang.order_page') }}</option>
+                    </select>
+                </div>
 
                 <div class="row ">
                     <div class="form-check form-switch form-check-custom form-check-solid col-3">

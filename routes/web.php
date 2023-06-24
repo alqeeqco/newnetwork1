@@ -83,7 +83,7 @@ Route::group([
     'middleware' => ['auth:web'],
 ], function () {
 
-    Route::get('services/emkan', [EmcanPaymentController::class, 'services_emkan'])->withoutMiddleware(['auth:web']);
+    Route::get('installment', [EmcanPaymentController::class, 'services_emkan'])->withoutMiddleware(['auth:web']);
     Route::get('services/proposal', [ProposalsController::class, 'create'])->withoutMiddleware(['auth:web']);
     Route::post('services/proposal', [ProposalsController::class, 'store'])->withoutMiddleware(['auth:web'])->name('proposal.store');
     Route::post('services/appointment', [AppointmentsController::class, 'store'])->withoutMiddleware(['auth:web'])->name('appointment.store');

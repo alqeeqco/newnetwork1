@@ -1,11 +1,11 @@
 @extends('layouts.front_layout')
 
-@section('title', 'Services Emkan')
+@section('title', 'Installment')
 
 @section('css')
   <!-- table -->
   <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
-  
+
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.4/css/dataTables.responsive.css">
   <!-- end -->
   <link rel="stylesheet" href="{{ asset('web/style.css') }}">
@@ -14,7 +14,8 @@
 @section('content')
 
     <div class="box-image">
-      <img src="{{ asset('web/img.jpg') }}" alt="not found">
+      <img src="{{ Request::root() . '/dashboard/images/' . App\Models\Ads::where('type' , 'order')->where('status' , 1)
+      ->orderBy('id' , 'DESC')->first()->image }}" alt="not found">
     </div>
     <!--<div class="box-image">-->
     <!--  <img src="./images/img2.jpg" alt="not found">-->
@@ -175,7 +176,7 @@
             واستخدام رقم القسيمة. </li>
           <li> قسيمة إمكان تستخدم للشراء فقط لمرة واحدة وبعد الإستخدام لا يمكن إرجاع المبلغ نقداً.</li>
           <li> قسيمة امكان الشرائية صالحة لمدة 10 أيام من تاريخ التفعيل </li>
-       
+
           <li> في حال إلغاء الطلب سيتم إرجاع المبلغ إلى رصيد حساب العميل في موقع الشبكة الجديدة </li>
           <li> لايمكن للعميل شراء المنتجات عن طريق الدمج ما بين طريقة الدفع عن طريق خدمة تقسيط المشتريات و أي طريقة دفع
             أخرى.</li>
@@ -184,8 +185,8 @@
         </ol>
       </div>
     </div>
-    
-    
+
+
   <!-- table -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src='https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js'></script>

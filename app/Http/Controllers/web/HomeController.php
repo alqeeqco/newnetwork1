@@ -50,7 +50,7 @@ class HomeController extends Controller
         })->where('appear' , 'best_seller')
             ->where('status' , '1')->orderByDesc('id')->get();
 
-        $ads = Ads::where('status' , '1')->orderByDesc('id')->take(2)->get();
+        $ads = Ads::where('type' , 'general')->where('status' , '1')->orderByDesc('id')->take(2)->get();
 
         $Why_People_Choose_Us = WhyChooseUs::where('status' , '1')->orderByDesc('id')->get();
 

@@ -4,6 +4,7 @@
     <tr class="fw-bold fs-6 text-muted text-center">
         <th>#</th>
         <th>{{ __('lang.name') }}</th>
+        <th>{{ __('lang.type') }}</th>
         <th>{{ __('lang.image') }}</th>
         <th>{{ __('lang.url') }}</th>
         <th>{{ __('lang.status') }}</th>
@@ -29,6 +30,17 @@
                         @else
 {{--                            {{ mb_substr($key->title_ar , 0 , 10 , 'utf-8').' ...' }}--}}
                             {{ $key->title_ar }}
+                        @endif
+                    </p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-start flex-column">
+                    <p class="text-dark fw-bolder text-hover-primary fs-6">
+                        @if($key->type == 'general')
+                            {{ __('lang.general') }}
+                        @else
+                        {{ __('lang.order_page') }}
                         @endif
                     </p>
                 </div>

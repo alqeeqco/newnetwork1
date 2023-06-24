@@ -407,5 +407,8 @@ return
         'Best Sales Offer' => 'أفضل عرض مبيعات',
         'Grab Yours' => 'انتزاع لك',
         'Shop Now' => 'تسوق الآن',
+        'order_page' => 'صفحة تقديم طلب',
+        'general' => 'عام',
+        'type' => 'نوع',
     ];
 ?>

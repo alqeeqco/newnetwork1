@@ -68,6 +68,9 @@ class AdsController extends Controller
         } else {
             $data['status'] = 0;
         }
+        if(!$data['url']){
+            $data['url'] = '####';
+        }
         Ads::create($data);
         return redirect()->route('ads.index')->with('success', __('lang.success'));
     }
